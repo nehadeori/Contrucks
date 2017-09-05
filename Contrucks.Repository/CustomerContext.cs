@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace Contrucks.Repository
 {
     public class PersonContext : DbContext
     {
-        public PersonContext() : base("name=MyConnectionString")
+        public PersonContext() : base("ConTruckConnectionString")
         {
         }
         public DbSet<Person> Persons { get; set; }

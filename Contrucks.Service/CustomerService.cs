@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Contrucks.Service
 {
-    public class CustomerService : ICustomerService
+    public class CustomerService : CustomerService.ICustomerService
     {
         private readonly ICustomerRepository customerRepository;
         private readonly IUnitOfWork unitOfWork;

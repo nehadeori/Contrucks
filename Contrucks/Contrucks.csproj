@@ -218,7 +218,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -299,6 +298,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Contrucks.model\Contrucks.model.csproj">
+      <Project>{73ee8dcb-65be-4b33-be35-74f70ff22d9b}</Project>
+      <Name>Contrucks.model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contrucks.Repository\Contrucks.Repository.csproj">
       <Project>{986e8eec-c25e-4dd8-8bec-15aa1047328d}</Project>
       <Name>Contrucks.Repository</Name>

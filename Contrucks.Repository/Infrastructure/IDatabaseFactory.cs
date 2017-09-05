@@ -4,6 +4,6 @@ namespace Contrucks.Repository.Infrastructure
 {
     public interface IDatabaseFactory : IDisposable
     {
-        PersonContext Get();
+        CustomerContext Get();
     }
 }

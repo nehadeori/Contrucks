@@ -60,7 +60,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Contrucks.model\Contrucks.model.csproj">
+      <Project>{73ee8dcb-65be-4b33-be35-74f70ff22d9b}</Project>
+      <Name>Contrucks.model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

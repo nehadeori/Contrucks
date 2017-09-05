@@ -1,4 +1,5 @@
-﻿using Contrucks.Repository.Infrastructure;
+﻿using Contrucks.model;
+using Contrucks.Repository.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Contrucks.Repository.Repository
 {
-    public class CustomerRepository : RepositoryBase<Person>, ICustomerRepository
+    public class CustomerRepository : RepositoryBase<UserTables>, ICustomerRepository
     {
         public CustomerRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
         {
         }
     }
-    public interface ICustomerRepository : IRepositoryBase<Person>
+    public interface ICustomerRepository : IRepositoryBase<UserTables>
     {
 
     }

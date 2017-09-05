@@ -1,4 +1,5 @@
-﻿using Contrucks.Repository.Infrastructure;
+﻿using Contrucks.model;
+using Contrucks.Repository.Infrastructure;
 using Contrucks.Repository.Repository;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Contrucks.Service
 {
-    public class CustomerService : ICustomerService
+    public class CustomerService : CustomerService.ICustomerService
     {
         private readonly ICustomerRepository customerRepository;
         private readonly IUnitOfWork unitOfWork;
@@ -24,7 +25,7 @@ namespace Contrucks.Service
             return customerRepository.GetAll();
         }
 
-        public void AddUser(Person person)
+        public void AddUser(UserTables person)
         {
             customerRepository.Add(person);
             unitOfWork.Commit();

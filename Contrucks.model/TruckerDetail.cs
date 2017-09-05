@@ -8,29 +8,35 @@ using System.Threading.Tasks;
 
 namespace Contrucks.model
 {
-    public class JobApplications
+   public  class TruckerDetail
     {
         [Key]
-        public int PK_JobApplicationId { get; set; }
+        public int PK_TruckId { get; set; }
+
         public int FK_TruckerId { get; set; }
         [ForeignKey("FK_TruckerId")]
         public virtual Truckers Truckers { get; set; }
-        public int FK_JobId { get; set; }
-        [ForeignKey("FK_JobId")]
-        public virtual NewJobPosts NewJobPosts { get; set; }
+
+        public int FK_TruckTypeId { get; set; }
+        [ForeignKey("FK_TruckTypeId")]
+        public virtual TruckType TruckType { get; set; }
 
         [Required]
-        [MaxLength(3000)]
-        public string CoverLetter { get; set; }
-        [Required(ErrorMessage ="This Field is required")]
-        [Range(100,9999999)]
-        public long AskingPrice { get; set; }
-        [Required(ErrorMessage = "This Field is required")]
+        [MaxLength(255, ErrorMessage = "Invalid Registration Number")]
+        public string TruckNumber { get; set; }
 
-        public DateTime TimeRequired { get; set; }
-        
-        public string JobApplicationStatus { get; set; }
-        public bool IsJobAwarded { get; set; }
+        [Required, Range(1, 300)]
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Values")]
+        public decimal TruckMileage { get; set; }
+
+        [Required, Range(1, 1000)]
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Values")]
+        public int MaximumWeightBearable { get; set; }
+
+        [Required, Range(4, 20)]
+        public int NumberOfWheels { get; set; }
+
+        public DateTime TruckBoughtIn { get; set; }
 
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;

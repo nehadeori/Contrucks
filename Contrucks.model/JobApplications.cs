@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Contrucks.model
 {
@@ -22,13 +18,13 @@ namespace Contrucks.model
         [Required]
         [MaxLength(3000)]
         public string CoverLetter { get; set; }
-        [Required(ErrorMessage ="This Field is required")]
-        [Range(100,9999999)]
+        [Required(ErrorMessage = "This Field is required")]
+        [Range(100, 9999999)]
         public long AskingPrice { get; set; }
         [Required(ErrorMessage = "This Field is required")]
 
         public DateTime TimeRequired { get; set; }
-        
+
         public string JobApplicationStatus { get; set; }
         public bool IsJobAwarded { get; set; }
 

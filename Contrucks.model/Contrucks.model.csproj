@@ -64,6 +64,7 @@
     <Compile Include="Transactions.cs" />
     <Compile Include="TruckerDetail.cs" />
     <Compile Include="Truckers.cs" />
+    <Compile Include="TruckTypes.cs" />
     <Compile Include="UserTables.cs" />
   </ItemGroup>
   <ItemGroup>

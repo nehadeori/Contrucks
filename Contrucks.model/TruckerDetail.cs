@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Contrucks.model
 {
-   public  class TruckerDetail
+    public class TruckerDetail
     {
         [Key]
         public int PK_TruckId { get; set; }
@@ -19,7 +19,7 @@ namespace Contrucks.model
 
         public int FK_TruckTypeId { get; set; }
         [ForeignKey("FK_TruckTypeId")]
-        public virtual TruckType TruckType { get; set; }
+        public virtual TruckTypes TruckType { get; set; }
 
         [Required]
         [MaxLength(255, ErrorMessage = "Invalid Registration Number")]
@@ -31,7 +31,7 @@ namespace Contrucks.model
 
         [Required, Range(1, 1000)]
         [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Values")]
-        public int MaximumWeightBearable { get; set; }
+        public decimal MaximumWeightBearable { get; set; }
 
         [Required, Range(4, 20)]
         public int NumberOfWheels { get; set; }

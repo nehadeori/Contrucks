@@ -20,20 +20,20 @@ namespace Contrucks.Service
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<Person> GetAllCustomers()
+        public IEnumerable<UserTables> GetAllCustomers()
         {
             return customerRepository.GetAll();
         }
 
-        public void AddUser(UserTables person)
+        public void AddUser(UserTables usertables)
         {
-            customerRepository.Add(person);
+            customerRepository.Add(usertables);
             unitOfWork.Commit();
         }
         public interface ICustomerService
         {
-            IEnumerable<Person> GetAllCustomers();
-            void AddUser(Person person);
+            IEnumerable<UserTables> GetAllCustomers();
+            void AddUser(UserTables usertables);
         }
 
     }

@@ -10,7 +10,7 @@ namespace Contrucks.Repository
 {
     public class CustomerContext : DbContext
     {
-        public CustomerContext() : base("name=MyConnectionString")
+        public CustomerContext() : base("ConTruckConnectionString")
         {
         }
         //public DbSet<Contractors> Contractors { get; set; }

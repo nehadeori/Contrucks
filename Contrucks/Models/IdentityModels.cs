@@ -21,7 +21,7 @@ namespace Contrucks.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ConTruckConnectionString", throwIfV1Schema: false)
         {
         }
         

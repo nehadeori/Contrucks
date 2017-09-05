@@ -23,6 +23,6 @@ namespace Contrucks.model
         public string DeletedBy { get; set; }
         public DateTime DeletedDate { get; set; }
     }
-
+   
 
 }

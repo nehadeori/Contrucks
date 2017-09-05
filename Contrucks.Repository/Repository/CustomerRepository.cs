@@ -16,6 +16,7 @@ namespace Contrucks.Repository.Repository
     }
     public interface ICustomerRepository : IRepositoryBase<UserTables>
     {
-
+        IEnumerable<UserTables> GetAll();
+        void Add(UserTables usertables);
     }
 }

@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using Contrucks.Models;
 using Contrucks.Providers;
 using Contrucks.Results;
+using Contrucks.model;
 
 namespace Contrucks.Controllers
 {
@@ -321,16 +322,16 @@ namespace Contrucks.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+        public async Task<IHttpActionResult> Register(UserTables model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { Email = model.UserEmail, UserName = model.UserEmail };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
 
             if (!result.Succeeded)
             {

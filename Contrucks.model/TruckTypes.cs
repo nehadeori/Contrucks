@@ -3,17 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Contrucks.model
 {
-    public class UserTables
+    public class TruckTypes
     {
         [Key]
-        public int PK_UserTableId { get; set; }
+        public int PK_TruckTypeId { get; set; }
         [Required]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        [CustomEmailValidator]
-        public string UserEmail { get; set; }
-        [Required]
-        public string UserPassword { get; set; }
-
+        [MaxLength(255)]
+        public string Trucktype { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string CreatedBy { get; set; }
@@ -23,6 +19,4 @@ namespace Contrucks.model
         public string DeletedBy { get; set; }
         public DateTime DeletedDate { get; set; }
     }
-
-
 }

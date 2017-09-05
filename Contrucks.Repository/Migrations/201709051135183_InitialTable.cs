@@ -1,4 +1,4 @@
-namespace Contrucks.Migrations
+namespace Contrucks.Repository.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -46,6 +46,18 @@ namespace Contrucks.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
+                        PK_UserTableId = c.Int(),
+                        UserEmail = c.String(),
+                        UserPassword = c.String(),
+                        IsActive = c.Boolean(),
+                        CreatedDate = c.DateTime(),
+                        CreatedBy = c.String(),
+                        ModifiedDate = c.DateTime(),
+                        ModifiedBy = c.String(),
+                        Deleted = c.String(),
+                        DeletedBy = c.String(),
+                        DeletedDate = c.DateTime(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");

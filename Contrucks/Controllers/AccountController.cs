@@ -331,7 +331,7 @@ namespace Contrucks.Controllers
 
             var user = new ApplicationUser() { Email = model.UserEmail, UserName = model.UserEmail };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
+            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword); 
 
             if (!result.Succeeded)
             {

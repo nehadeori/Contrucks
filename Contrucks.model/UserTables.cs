@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Contrucks.model
 {
-    public class UserTables
+    public class UserTables :IdentityUser
     {
         [Key]
         public int PK_UserTableId { get; set; }

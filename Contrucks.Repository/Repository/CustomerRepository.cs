@@ -19,4 +19,5 @@ namespace Contrucks.Repository.Repository
         IEnumerable<UserTables> GetAll();
         void Add(UserTables usertables);
     }
+
 }

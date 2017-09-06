@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Contrucks.Service
 {
-    public class CustomerService : CustomerService.ICustomerService
+    public class UserTablesService : UserTablesService.IUserTablesService
     {
         private readonly ICustomerRepository customerRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public CustomerService(ICustomerRepository customerRepository, IUnitOfWork unitOfWork)
+        public UserTablesService(ICustomerRepository customerRepository, IUnitOfWork unitOfWork)
         {
             this.customerRepository = customerRepository;
             this.unitOfWork = unitOfWork;
@@ -30,7 +30,7 @@ namespace Contrucks.Service
             customerRepository.Add(usertables);
             unitOfWork.Commit();
         }
-        public interface ICustomerService
+        public interface IUserTablesService
         {
             IEnumerable<UserTables> GetAllCustomers();
             void AddUser(UserTables usertables);

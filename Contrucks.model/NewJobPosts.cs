@@ -31,6 +31,9 @@ namespace Contrucks.model
 
         [DataType(DataType.DateTime)]
         public DateTime? JobStartDate { get; set; }
+
+        [DataType(DataType.DateTime)]
+        public DateTime? JobEndDate { get; set; }
         public DateTime? EstimatedTime { get; set; }
         [Required(ErrorMessage = "Please Mention a source Address")]
         [MaxLength(500, ErrorMessage = "Word Limit Exceeded")]

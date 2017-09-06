@@ -37,7 +37,7 @@ namespace Contrucks
             // Register your repositories all at once using assembly scanning
             builder.RegisterAssemblyTypes(typeof(CustomerRepository).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
 
-            builder.RegisterAssemblyTypes(typeof(CustomerService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterAssemblyTypes(typeof(UserTablesService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
 
             // Register your Web API controllers all at once using assembly scanning
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

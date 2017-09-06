@@ -74,6 +74,10 @@
     <Compile Include="Truckers.cs" />
     <Compile Include="TruckTypes.cs" />
     <Compile Include="UserTables.cs" />
+    <Compile Include="ViewModels\ContractorsViewModel.cs" />
+    <Compile Include="ViewModels\NewJobPostViewModel.cs" />
+    <Compile Include="ViewModels\TruckersViewModel.cs" />
+    <Compile Include="ViewModels\UserTablesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

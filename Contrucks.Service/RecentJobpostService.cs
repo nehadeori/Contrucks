@@ -1,11 +1,8 @@
-﻿using Contrucks.model;
-using Contrucks.model.ViewModels;
+﻿using Contrucks.model.ViewModels;
 using Contrucks.Repository.Infrastructure;
+using Contrucks.Repository.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Contrucks.Service
 {
@@ -25,26 +22,23 @@ namespace Contrucks.Service
             return usertableRepository.GetAll();
         }
 
-        public void AddUser(UserTables usertables)
+        public void AddUser(Recentpostviewmodel usertables)
         {
             usertableRepository.Add(usertables);
             unitOfWork.Commit();
         }
 
-        IEnumerable<UserTables> IRecentpostsRepository.GetAllCustomers()
-        {
-            throw new NotImplementedException();
-        }
+     
 
-        IEnumerable<UserTables> IRecentJobPostService.GetAllCustomers()
+        IEnumerable<Recentpostviewmodel> IRecentJobPostService.GetAllCustomers()
         {
             throw new NotImplementedException();
         }
 
         public interface IRecentJobPostService
         {
-            IEnumerable<UserTables> GetAllCustomers();
-            void AddUser(UserTables usertables);
+            IEnumerable<Recentpostviewmodel> GetAllCustomers();
+            void AddUser(Recentpostviewmodel usertables);
         }
 
     }

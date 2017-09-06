@@ -1,7 +1,6 @@
 ﻿using Contrucks.model;
 using Contrucks.model.ViewModels;
 using Contrucks.Repository.Infrastructure;
-using Contrucks.Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Contrucks.Service
 {
-    public class UserTablesService : UserTablesService.IUserTablesService
+    public class RecentJobPostService : RecentJobPostService.IRecentJobPostService
     {
-        private readonly IUserTablesRepository usertableRepository;
+        private readonly IRecentpostsRepository usertableRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public UserTablesService(IUserTablesRepository usertableRepository, IUnitOfWork unitOfWork)
+        public RecentJobPostService(IRecentpostsRepository usertableRepository, IUnitOfWork unitOfWork)
         {
             this.usertableRepository = usertableRepository;
             this.unitOfWork = unitOfWork;
@@ -32,16 +31,20 @@ namespace Contrucks.Service
             unitOfWork.Commit();
         }
 
-        IEnumerable<UserTables> IUserTablesService.GetAllCustomers()
+        IEnumerable<UserTables> IRecentpostsRepository.GetAllCustomers()
         {
             throw new NotImplementedException();
         }
 
-        public interface IUserTablesService
+        IEnumerable<UserTables> IRecentJobPostService.GetAllCustomers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public interface IRecentJobPostService
         {
             IEnumerable<UserTables> GetAllCustomers();
             void AddUser(UserTables usertables);
         }
 
     }
-}

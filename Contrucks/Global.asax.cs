@@ -35,7 +35,7 @@ namespace Contrucks
             builder.RegisterType<DatabaseFactory>().As<IDatabaseFactory>().InstancePerRequest();
 
             // Register your repositories all at once using assembly scanning
-            builder.RegisterAssemblyTypes(typeof(CustomerRepository).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterAssemblyTypes(typeof(UserTablesRepository).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
 
             builder.RegisterAssemblyTypes(typeof(UserTablesService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
 

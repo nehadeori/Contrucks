@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Contrucks.Repository.Repository
 {
-    public class CustomerRepository : RepositoryBase<UserTables>, ICustomerRepository
+    public class UserTablesRepository : RepositoryBase<UserTables>, IUserTablesRepository
     {
-        public CustomerRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
+        public UserTablesRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
         {
         }
     }
-    public interface ICustomerRepository : IRepositoryBase<UserTables>
+    public interface IUserTablesRepository : IRepositoryBase<UserTables>
     {
         IEnumerable<UserTables> GetAll();
         void Add(UserTables usertables);

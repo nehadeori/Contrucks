@@ -16,6 +16,10 @@ namespace Contrucks.model
         [ForeignKey("FK_LoadTypeId")]
         public virtual LoadTypes LoadType { get; set; }
 
+        [Required]
+        [Range(0,10000)]
+        public int distance { get; set; }
+
         [Required(ErrorMessage = "This Field is Required")]
         public int FK_TruckTypeId { get; set; }
         [ForeignKey("FK_TruckType")]

@@ -24,8 +24,9 @@ namespace Contrucks.model.ViewModels
        
         public int Budget { get; set; }
 
-        public int PK_LoadTypeId { get; set; }
-        public int PK_TruckTypeId { get; set; }
+        public string LoadType { get; set; }
+        public string TruckType { get; set; }
+        public int NoofTrucksRequired { get; set; }
 
     }
 }

@@ -8,12 +8,15 @@ namespace Contrucks.model.ViewModels
 {
    public class TruckersViewModel
     {
-        public int PK_UserTableId { get; set; }
-        public string TruckerName { get; set; }
+        public int UserId { get; set; }
+        public string TruckerFirstName { get; set; }
+        public string TruckerLastName { get; set; }
         public int TruckerAge { get; set; }
+        public string UserEmail { get; set; }
+        public string UserPassword { get; set; }
         public string TruckerLicensePlate { get; set; }
         public string TruckerPhone { get; set; }
-        public int PK_StateId { get; set; }
-        public int PK_CityId { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
     }
 }

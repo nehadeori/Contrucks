@@ -8,11 +8,18 @@ namespace Contrucks.model.ViewModels
 {
    public class ContractorsViewModel
     {
-        public int PK_UserTableId { get; set; }
-        public string ContractorName { get; set; }
+        public int UserId { get; set; }
+        public string ContractorFirstName { get; set; }
+
+        public string ContractorLastName { get; set; }
         public int ContractorAge { get; set; }
         public int ContractorPhone { get; set; }
-        public int PK_StateId { get; set; }
-        public int PK_CityId { get; set; }
+        public string UserEmail { get; set; }
+        public string UserPassword { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
+
+
+
     }
 }

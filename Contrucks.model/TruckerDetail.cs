@@ -13,12 +13,12 @@ namespace Contrucks.model
         [Key]
         public int PK_TruckId { get; set; }
 
-        public int FK_TruckerId { get; set; }
-        [ForeignKey("FK_TruckerId")]
+        public int PK_TruckerId { get; set; }
+        //[ForeignKey("FK_TruckerId")]
         public virtual Truckers Truckers { get; set; }
 
-        public int FK_TruckTypeId { get; set; }
-        [ForeignKey("FK_TruckTypeId")]
+        public int PK_TruckTypeId { get; set; }
+        //[ForeignKey("FK_TruckTypeId")]
         public virtual TruckTypes TruckType { get; set; }
 
         [Required]

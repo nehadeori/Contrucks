@@ -1,4 +1,5 @@
-﻿using Contrucks.model.ViewModels;
+﻿using Contrucks.model;
+using Contrucks.model.ViewModels;
 using Contrucks.Repository.Infrastructure;
 using Contrucks.Repository.Repository;
 using System;
@@ -22,7 +23,7 @@ namespace Contrucks.Service
             return usertableRepository.GetAll();
         }
 
-        public void AddUser(RecentpostViewmodel usertables)
+        public void AddData(NewJobPosts usertables)
         {
             usertableRepository.Add(usertables);
             unitOfWork.Commit();
@@ -38,7 +39,7 @@ namespace Contrucks.Service
         public interface IRecentJobPostService
         {
             IEnumerable<RecentpostViewmodel> GetAll();
-            void AddUser(RecentpostViewmodel usertables);
+            void AddData(NewJobPosts usertables);   
         }
 
     }

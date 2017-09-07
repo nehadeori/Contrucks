@@ -8,8 +8,8 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_JobDurationId { get; set; }
-        public int FK_ContractorId { get; set; }
-        [ForeignKey("FK_ContractorId")]
+        public int PK_ContractorId { get; set; }
+      //  [ForeignKey("FK_ContractorId")]
         public Contractors Contractor { get; set; }
         public DateTime JobStartTime { get; set; }
         public DateTime JobStopTime { get; set; }

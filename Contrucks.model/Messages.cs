@@ -8,8 +8,8 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_MessageId { get; set; }
-        public int FK_JobApplicationId { get; set; }
-        [ForeignKey("FK_JobApplicationId")]
+        public int PK_JobApplicationId { get; set; }
+       // [ForeignKey("FK_JobApplicationId")]
         public JobApplications JobApplications { get; set; }
         [Required]
         [MaxLength(255)]

@@ -1,4 +1,5 @@
-﻿using Contrucks.model.ViewModels;
+﻿using Contrucks.model;
+using Contrucks.model.ViewModels;
 using Contrucks.Service;
 using Microsoft.AspNet.Identity;
 using System;
@@ -22,7 +23,9 @@ namespace Contrucks.Controllers
         {
             recentPostService = rec;
         }
-        [Route("GetAllData")]
+        // GET: /Details/
+
+        [Route("api/ContractorDashboard/GetAllData")]
         public IHttpActionResult GetAllData()
         {
             //var user = User.Identity.GetUserId();
@@ -31,7 +34,44 @@ namespace Contrucks.Controllers
             return Ok(authors);
 
         }
+
+        //Post
+        [Route("api/ContractorDashboard/SetData")]
+        public async Task<IHttpActionResult> SetData(RecentpostViewmodel recentVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            NewJobPosts nw = new NewJobPosts
+            {
+                JobTitle = recentVM.JobTitle,
+                JobStartDate = recentVM.JobStartDate,
+                JobEndDate = recentVM.JobEndDate,
+                JobDescription = recentVM.JobDescription,
+                EstimatedTime = recentVM.EstimatedTime,
+                SourceAddress = recentVM.SourceAddress,
+                DestinationAddress = recentVM.DestinationAddress,
+                distance = recentVM.distance,
+                LoadWeight = recentVM.LoadWeight,
+                Budget = recentVM.Budget,
+                PK_LoadTypeId = recentVM.PK_LoadTypeId,
+                PK_TruckTypeId = recentVM.PK_TruckTypeId
+                
+            };
+            
+            if(nw== null)
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            recentPostService.AddData(nw);
+            return Ok();
         }
+
+
+    }
+
+
 }
 //// GET api/Account/UserInfo
 //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]

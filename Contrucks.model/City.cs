@@ -8,9 +8,9 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_CityId { get; set; }
-        public int FK_StateId { get; set; }
-        [ForeignKey("FK_StateId")]
-        public virtual State State { get; set; }
+        public int PK_StateId { get; set; }
+        //[ForeignKey("FK_StateId")]
+       
         public string CityName { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
@@ -20,5 +20,8 @@ namespace Contrucks.model
         public string Deleted { get; set; }
         public string DeletedBy { get; set; }
         public DateTime DeletedDate { get; set; }
+
+
+        public virtual State State { get; set; }
     }
 }

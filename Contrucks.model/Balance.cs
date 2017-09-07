@@ -8,8 +8,8 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_BalanceId { get; set; }
-        public int FK_UserTableId { get; set; }
-        [ForeignKey("FK_UserTableId ")]
+        public int PK_UserTableId { get; set; }
+       // [ForeignKey("FK_UserTableId ")]
         public UserTables UserTables { get; set; }
 
         [Required]

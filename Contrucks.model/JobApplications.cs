@@ -8,11 +8,11 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_JobApplicationId { get; set; }
-        public int FK_TruckerId { get; set; }
-        [ForeignKey("FK_TruckerId")]
+        public int PK_TruckerId { get; set; }
+    //    [ForeignKey("FK_TruckerId")]
         public virtual Truckers Truckers { get; set; }
-        public int FK_JobId { get; set; }
-        [ForeignKey("FK_JobId")]
+        public int PK_JobId { get; set; }
+       // [ForeignKey("FK_JobId")]
         public virtual NewJobPosts NewJobPosts { get; set; }
 
         [Required]

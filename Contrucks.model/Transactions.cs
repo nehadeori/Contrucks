@@ -8,11 +8,11 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_TransactionId { get; set; }
-        public int FK_ContractorId { get; set; }
-        [ForeignKey("FK_ContractorId")]
+        public int PK_ContractorId { get; set; }
+        //[ForeignKey("FK_ContractorId")]
         public virtual Contractors Contractor { get; set; }
-        public int FK_TruckerId { get; set; }
-        [ForeignKey("FK_TruckerId")]
+        public int PK_TruckerId { get; set; }
+        //[ForeignKey("FK_TruckerId")]
         public virtual Truckers Trucker { get; set; }
         [MaxLength(15)]
         public string TransactionStatus { get; set; }

@@ -8,11 +8,11 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_RatingId { get; set; }
-        public int FK_ContractorId { get; set; }
-        [ForeignKey("FK_ContractorId")]
+        public int PK_ContractorId { get; set; }
+        //[ForeignKey("FK_ContractorId")]
         public Contractors Contractor { get; set; }
-        public int FK_TruckerId { get; set; }
-        [ForeignKey("FK_TruckerId")]
+        public int PK_TruckerId { get; set; }
+       // [ForeignKey("FK_TruckerId")]
         public Truckers Trucker { get; set; }
         [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Values")]
         public decimal Rating { get; set; }

@@ -8,22 +8,23 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_JobId { get; set; }
-        public int FK_ContractorId { get; set; }
-        [ForeignKey("FK_ContractorId")]
+        public int PK_ContractorId { get; set; }
+      //  [ForeignKey("FK_ContractorId")]
         public virtual Contractors Contractor { get; set; }
 
-        public int FK_LoadTypeId { get; set; }
-        [ForeignKey("FK_LoadTypeId")]
+        public int PK_LoadTypeId { get; set; }
+        //[ForeignKey("FK_LoadTypeId")]
         public virtual LoadTypes LoadType { get; set; }
+        [Required(ErrorMessage = "This Field is Required")]
+        public int PK_TruckTypeId { get; set; }
+        // [ForeignKey("FK_TruckTypeId")]
+        public virtual TruckTypes TruckType { get; set; }
 
         [Required]
         [Range(0,10000)]
         public int distance { get; set; }
 
-        [Required(ErrorMessage = "This Field is Required")]
-        public int FK_TruckTypeId { get; set; }
-        [ForeignKey("FK_TruckType")]
-        public virtual TruckTypes TruckType { get; set; }
+       
 
         [Required(ErrorMessage = "Please Mention a Title")]
         [MaxLength(255, ErrorMessage = "Word Limit Exceeded")]
@@ -38,7 +39,7 @@ namespace Contrucks.model
 
         [DataType(DataType.DateTime)]
         public DateTime? JobEndDate { get; set; }
-        public DateTime? EstimatedTime { get; set; }
+        public int EstimatedTime { get; set; }
         [Required(ErrorMessage = "Please Mention a source Address")]
         [MaxLength(500, ErrorMessage = "Word Limit Exceeded")]
         public string SourceAddress { get; set; }

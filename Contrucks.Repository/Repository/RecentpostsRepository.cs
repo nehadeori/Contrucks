@@ -1,4 +1,5 @@
-﻿using Contrucks.model.ViewModels;
+﻿using Contrucks.model;
+using Contrucks.model.ViewModels;
 using Contrucks.Repository.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,16 @@ namespace Contrucks.Repository.Repository
             public RecentpostsRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
             {
             }
+
+        public void Add(NewJobPosts usertables)
+        {
+            throw new NotImplementedException();
         }
+    }
         public interface IRecentpostsRepository : IRepositoryBase<RecentpostViewmodel>
         {
             IEnumerable<RecentpostViewmodel> GetAll();
-            void Add(RecentpostViewmodel usertables);
+            void Add(NewJobPosts usertables);
         }
 
     }

@@ -17,5 +17,7 @@ namespace Contrucks.model
         public string Deleted { get; set; }
         public string DeletedBy { get; set; }
         public DateTime DeletedDate { get; set; }
+
+
     }
 }

@@ -10,16 +10,16 @@ namespace Contrucks.model
         [Key]
         public int PK_TruckerId { get; set; }
 
-        public int FK_UserTableId { get; set; }
-        [ForeignKey("FK_UserTableId")]
+        public int PK_UserTableId { get; set; }
+       // [ForeignKey("FK_UserTableId")]
         public virtual UserTables UserTable { get; set; }
 
-        public int FK_StateId { get; set; }
-        [ForeignKey("FK_StateId")]
+        public int PK_StateId { get; set; }
+      //  [ForeignKey("FK_StateId")]
         public virtual State State { get; set; }
 
-        public int FK_CityId { get; set; }
-        [ForeignKey("FK_CityId")]
+        public int PK_CityId { get; set; }
+       // [ForeignKey("FK_CityId")]
         public virtual City City { get; set; }
 
         [Required(ErrorMessage = "Trucker's Name is Required")]

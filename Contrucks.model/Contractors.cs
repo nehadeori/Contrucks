@@ -8,16 +8,16 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_ContractorId { get; set; }
-        public int FK_UserTableId { get; set; }
+        public int PK_UserTableId { get; set; }
         [ForeignKey("FK_UserTableId")]
         public virtual UserTables UserTables { get; set; }
 
-        public int FK_StateId { get; set; }
-        [ForeignKey("FK_StateId")]
+        public int PK_StateId { get; set; }
+       // [ForeignKey("FK_StateId")]
         public virtual State State { get; set; }
 
-        public int FK_CityId { get; set; }
-        [ForeignKey("FK_CityId")]
+        public int PK_CityId { get; set; }
+       // [ForeignKey("FK_CityId")]
         public virtual City City { get; set; }
 
         [Required(ErrorMessage = "Name is Required")]
@@ -29,8 +29,8 @@ namespace Contrucks.model
         public int ContractorAge { get; set; }
 
         [Required(ErrorMessage = "This Field is Required")]
-        [MaxLength(15)]
-        public int ContractorPhone { get; set; }
+        [MaxLength(15, ErrorMessage = "Invalid Phone Number")]
+        public string ContractorPhone { get; set; }
 
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;

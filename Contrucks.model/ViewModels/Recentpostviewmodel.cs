@@ -14,18 +14,17 @@ namespace Contrucks.model.ViewModels
         public DateTime? JobEndDate { get; set; }
         public string JobDescription { get; set; }
 
-        public DateTime? EstimatedTime { get; set; }
+        public int EstimatedTime { get; set; }
 
         public string SourceAddress { get; set; }
-
         public string DestinationAddress { get; set; }
-
+        public int distance { get; set; }
         public int LoadWeight { get; set; }
 
         public int Budget { get; set; }
 
-        public string LoadType { get; set; }
-        public string TruckType { get; set; }
-        public int NoOfTrucksRequired { get; set; }
+        public  int PK_LoadTypeId { get; set; }
+        public int PK_TruckTypeId { get; set; }
+        //public int NoOfTrucksRequired { get; set; }
     }
 }

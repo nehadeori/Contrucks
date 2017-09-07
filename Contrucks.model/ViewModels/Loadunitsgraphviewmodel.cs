@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contrucks.model.ViewModels
 {
-   public  class Loadunitsgraphviewmodel
+   public  class LoadunitsgraphViewmodel
     {
         //NEW JOB POSTS
         public string JobTitle { get; set; }

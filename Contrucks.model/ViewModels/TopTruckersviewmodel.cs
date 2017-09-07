@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contrucks.model.ViewModels
 {
-    public class TopTruckersviewmodel
+    public class TopTruckersViewmodel
     {
         //TRUCKERS
         public string TruckerName { get; set; }

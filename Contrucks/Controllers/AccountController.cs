@@ -17,6 +17,7 @@ using Contrucks.Models;
 using Contrucks.Providers;
 using Contrucks.Results;
 using Contrucks.model;
+using Contrucks.model.ViewModels;
 
 namespace Contrucks.Controllers
 {
@@ -322,7 +323,7 @@ namespace Contrucks.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(UserTables model)
+        public async Task<IHttpActionResult> Register(UserTablesViewModel model)
         {
             if (!ModelState.IsValid)
             {

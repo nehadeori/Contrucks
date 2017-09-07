@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 namespace Contrucks.Repository.Repository
 {
   
-        public class RecentpostsRepository : RepositoryBase<Recentpostviewmodel>, IRecentpostsRepository
+        public class RecentpostsRepository : RepositoryBase<RecentpostViewmodel>, IRecentpostsRepository
         {
             public RecentpostsRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
             {
             }
         }
-        public interface IRecentpostsRepository : IRepositoryBase<Recentpostviewmodel>
+        public interface IRecentpostsRepository : IRepositoryBase<RecentpostViewmodel>
         {
-            IEnumerable<Recentpostviewmodel> GetAll();
-            void Add(Recentpostviewmodel usertables);
+            IEnumerable<RecentpostViewmodel> GetAll();
+            void Add(RecentpostViewmodel usertables);
         }
 
     }

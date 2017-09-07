@@ -1,4 +1,5 @@
-﻿using Contrucks.model.ViewModels;
+﻿using Contrucks.model;
+using Contrucks.model.ViewModels;
 using Contrucks.Repository.Infrastructure;
 using Contrucks.Repository.Repository;
 using System;
@@ -30,7 +31,7 @@ namespace Contrucks.Service
 
 
 
-        IEnumerable<Recentpostviewmodel> IUserTablesService.GetAllCustomers()
+        IEnumerable<UserTablesViewModel> IUserTablesService.GetAllCustomers()
         {
             throw new NotImplementedException();
         }

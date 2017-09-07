@@ -17,28 +17,29 @@ namespace Contrucks.Service
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<Recentpostviewmodel> GetAllCustomers()
+        public IEnumerable<RecentpostViewmodel> GetAllCustomers()
         {
             return usertableRepository.GetAll();
         }
 
-        public void AddUser(Recentpostviewmodel usertables)
+        public void AddUser(RecentpostViewmodel usertables)
         {
             usertableRepository.Add(usertables);
             unitOfWork.Commit();
         }
 
-     
 
-        IEnumerable<Recentpostviewmodel> IRecentJobPostService.GetAllCustomers()
+
+        IEnumerable<RecentpostViewmodel> IRecentJobPostService.GetAllCustomers()
         {
             throw new NotImplementedException();
         }
 
         public interface IRecentJobPostService
         {
-            IEnumerable<Recentpostviewmodel> GetAllCustomers();
-            void AddUser(Recentpostviewmodel usertables);
+            IEnumerable<RecentpostViewmodel> GetAllCustomers();
+            void AddUser(RecentpostViewmodel usertables);
         }
 
     }
+}

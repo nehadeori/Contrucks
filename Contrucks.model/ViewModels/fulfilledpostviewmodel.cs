@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contrucks.model.ViewModels
 {
-   public class fulfilledpostviewmodel
+   public class fulfilledpostViewmodel
     {
         //NEW JOB POSTS
         public string JobTitle { get; set; }

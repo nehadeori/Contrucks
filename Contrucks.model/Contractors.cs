@@ -8,16 +8,14 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_ContractorId { get; set; }
-        public int PK_UserTableId { get; set; }
         [ForeignKey("FK_UserTableId")]
+        public int FK_UserTableId { get; set; }
         public virtual UserTables UserTables { get; set; }
-
-        public int PK_StateId { get; set; }
-       // [ForeignKey("FK_StateId")]
+        [ForeignKey("FK_StateId")]
+        public int FK_StateId { get; set; }
         public virtual State State { get; set; }
-
-        public int PK_CityId { get; set; }
-       // [ForeignKey("FK_CityId")]
+        [ForeignKey("FK_CityId")]
+        public int FK_CityId { get; set; }  
         public virtual City City { get; set; }
 
         [Required(ErrorMessage = "Name is Required")]

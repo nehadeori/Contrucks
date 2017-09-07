@@ -8,19 +8,16 @@ namespace Contrucks.model
     {
         [Key]
         public int PK_JobApplicationId { get; set; }
-        public int PK_TruckerId { get; set; }
-    //    [ForeignKey("FK_TruckerId")]
+        [ForeignKey("FK_TruckerId")]
+        public int FK_TruckerId { get; set; }    
         public virtual Truckers Truckers { get; set; }
         public int PK_JobId { get; set; }
        // [ForeignKey("FK_JobId")]
         public virtual NewJobPosts NewJobPosts { get; set; }
 
-        [Required]
-        [MaxLength(3000)]
-        public string CoverLetter { get; set; }
-        [Required(ErrorMessage = "This Field is required")]
-        [Range(100, 9999999)]
-        public long AskingPrice { get; set; }
+
+
+
         [Required(ErrorMessage = "This Field is required")]
 
         public DateTime TimeRequired { get; set; }

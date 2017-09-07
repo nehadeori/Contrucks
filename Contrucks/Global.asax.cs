@@ -3,6 +3,7 @@ using Autofac.Integration.WebApi;
 using Contrucks.Repository.Infrastructure;
 using Contrucks.Repository.Repository;
 using Contrucks.Service;
+using Contrucks.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,8 @@ namespace Contrucks
 
             builder.RegisterAssemblyTypes(typeof(UserTablesService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
 
+            builder.RegisterType<RecentJobPostService>().As<IRecentJobPostService>().InstancePerRequest();
+            builder.RegisterType<RecentpostsRepository>().As<IRecentpostsRepository>().InstancePerRequest();
             // Register your Web API controllers all at once using assembly scanning
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 

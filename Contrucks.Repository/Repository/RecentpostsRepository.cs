@@ -15,16 +15,11 @@ namespace Contrucks.Repository.Repository
             public RecentpostsRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
             {
             }
-
-        public void Add(NewJobPosts usertables)
-        {
-            throw new NotImplementedException();
-        }
     }
         public interface IRecentpostsRepository : IRepositoryBase<RecentpostViewmodel>
         {
             IEnumerable<RecentpostViewmodel> GetAll();
-            void Add(NewJobPosts usertables);
+            void Add(RecentpostViewmodel usertables);
         }
 
     }

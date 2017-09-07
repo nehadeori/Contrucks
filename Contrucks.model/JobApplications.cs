@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,34 +8,43 @@ namespace Contrucks.model
     public class JobApplications
     {
         [Key]
-        public int PK_JobApplicationId { get; set; }
-        public int PK_TruckerId { get; set; }
-    //    [ForeignKey("FK_TruckerId")]
+        public int JobApplicationId { get; set; }
+
+        //foreign key for Truckers
+     
+        public int TruckerId { get; set; }
+
+        
         public virtual Truckers Truckers { get; set; }
-        public int PK_JobId { get; set; }
-       // [ForeignKey("FK_JobId")]
+
+        //foreign key for NewJobPosts
+        public int JobId { get; set; }
+
+      
         public virtual NewJobPosts NewJobPosts { get; set; }
 
         [Required]
         [MaxLength(3000)]
-        public string CoverLetter { get; set; }
+        public virtual string CoverLetter { get; set; }
         [Required(ErrorMessage = "This Field is required")]
         [Range(100, 9999999)]
-        public long AskingPrice { get; set; }
+        public virtual long AskingPrice { get; set; }
         [Required(ErrorMessage = "This Field is required")]
 
-        public DateTime TimeRequired { get; set; }
+        public virtual DateTime TimeRequired { get; set; }
 
-        public string JobApplicationStatus { get; set; }
-        public bool IsJobAwarded { get; set; }
+        public virtual string JobApplicationStatus { get; set; }
+        public virtual bool IsJobAwarded { get; set; }
 
-        public bool IsActive { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public string CreatedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public string ModifiedBy { get; set; }
-        public string Deleted { get; set; }
-        public string DeletedBy { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public virtual bool IsActive { get; set; }
+        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
+        public virtual string CreatedBy { get; set; }
+        public virtual DateTime ModifiedDate { get; set; }
+        public virtual string ModifiedBy { get; set; }
+        public virtual string Deleted { get; set; }
+        public virtual string DeletedBy { get; set; }
+        public virtual DateTime DeletedDate { get; set; }
+
+        public virtual ICollection<Messages> Messages { get; set; }
     }
 }

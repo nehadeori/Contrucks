@@ -7,24 +7,27 @@ namespace Contrucks.model
     public class Balance
     {
         [Key]
-        public int PK_BalanceId { get; set; }
-        public int PK_UserTableId { get; set; }
-       // [ForeignKey("FK_UserTableId ")]
-        public UserTables UserTables { get; set; }
+        public int BalanceId { get; set; }
+
+        //foreign key for UserTables
+        public int UserTableId { get; set; }
+
+      
+        public virtual UserTables UserTables { get; set; }
 
         [Required]
-        public int Amount { get; set; }
+        public virtual int Amount { get; set; }
         [Required]
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
         [MaxLength(255)]
         public string CreatedBy { get; set; }
         [MaxLength(255)]
         public virtual string ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public bool IsActive { get; set; }
-        public bool Deleted { get; set; }
+        public virtual DateTime ModifiedDate { get; set; }
+        public virtual bool IsActive { get; set; }
+        public virtual bool Deleted { get; set; }
         [MaxLength(255)]
-        public string DeletedBy { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public virtual string DeletedBy { get; set; }
+        public virtual DateTime DeletedDate { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,43 +9,54 @@ namespace Contrucks.model
     {
 
         [Key]
-        public int PK_TruckerId { get; set; }
+        public int TruckerId { get; set; }
 
-        public int PK_UserTableId { get; set; }
-       // [ForeignKey("FK_UserTableId")]
+        //foreign key for UserTables
+        public int UserTableId { get; set; }
+
+      
         public virtual UserTables UserTable { get; set; }
 
-        public int PK_StateId { get; set; }
-      //  [ForeignKey("FK_StateId")]
+        //foreign key for States
+        public int StateId { get; set; }
+
+      
         public virtual State State { get; set; }
 
-        public int PK_CityId { get; set; }
-       // [ForeignKey("FK_CityId")]
+        //foreign key for City
+        public int CityId { get; set; }
+
+       
         public virtual City City { get; set; }
 
         [Required(ErrorMessage = "Trucker's Name is Required")]
         [MaxLength(255, ErrorMessage = "Word limit Exceeded")]
-        public string TruckerName { get; set; }
+        public virtual string TruckerName { get; set; }
 
         [Required(ErrorMessage = "This Field is Required")]
         [Range(18, 110)]
-        public int TruckerAge { get; set; }
+        public virtual int TruckerAge { get; set; }
 
         [Required(ErrorMessage = "This Field is Required")]
         [MaxLength(20, ErrorMessage = "Limit Exceeded")]
 
-        public string TruckerLicensePlate { get; set; }
+        public virtual string TruckerLicensePlate { get; set; }
 
         [Required(ErrorMessage = "This Field is Required")]
         [MaxLength(15, ErrorMessage = "Invalid Phone Number")]
-        public string TruckerPhone { get; set; }
-        public bool IsActive { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public string CreatedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public string ModifiedBy { get; set; }
-        public string Deleted { get; set; }
-        public string DeletedBy { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public virtual string TruckerPhone { get; set; }
+        public virtual bool IsActive { get; set; }
+        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
+        public virtual string CreatedBy { get; set; }
+        public virtual DateTime ModifiedDate { get; set; }
+        public virtual string ModifiedBy { get; set; }
+        public virtual string Deleted { get; set; }
+        public virtual string DeletedBy { get; set; }
+        public virtual DateTime DeletedDate { get; set; }
+
+   
+        public virtual ICollection<Messages> Messages { get; set; }
+
+        public virtual ICollection<TruckerDetail> TruckerDetail { get; set; }
     }
 }

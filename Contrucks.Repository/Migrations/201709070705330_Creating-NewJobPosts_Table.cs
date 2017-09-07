@@ -11,8 +11,8 @@ namespace Contrucks.Repository.Migrations
                 "dbo.Balances",
                 c => new
                     {
-                        PK_BalanceId = c.Int(nullable: false, identity: true),
-                        PK_UserTableId = c.Int(nullable: false),
+                        BalanceId = c.Int(nullable: false, identity: true),
+                        UserTableId = c.Int(nullable: false),
                         Amount = c.Int(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(maxLength: 255),
@@ -24,7 +24,7 @@ namespace Contrucks.Repository.Migrations
                         DeletedDate = c.DateTime(nullable: false),
                         UserTables_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.PK_BalanceId)
+                .PrimaryKey(t => t.BalanceId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserTables_Id)
                 .Index(t => t.UserTables_Id);
             
@@ -32,8 +32,8 @@ namespace Contrucks.Repository.Migrations
                 "dbo.Cities",
                 c => new
                     {
-                        PK_CityId = c.Int(nullable: false, identity: true),
-                        PK_StateId = c.Int(nullable: false),
+                        CityId = c.Int(nullable: false, identity: true),
+                        StateId = c.Int(nullable: false),
                         CityName = c.String(),
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
@@ -44,35 +44,18 @@ namespace Contrucks.Repository.Migrations
                         DeletedBy = c.String(),
                         DeletedDate = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.PK_CityId)
-                .ForeignKey("dbo.States", t => t.PK_StateId, cascadeDelete: true)
-                .Index(t => t.PK_StateId);
-            
-            CreateTable(
-                "dbo.States",
-                c => new
-                    {
-                        PK_StateId = c.Int(nullable: false, identity: true),
-                        StateName = c.String(nullable: false),
-                        IsActive = c.Boolean(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(),
-                        Deleted = c.String(),
-                        DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.PK_StateId);
+                .PrimaryKey(t => t.CityId)
+                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
+                .Index(t => t.StateId);
             
             CreateTable(
                 "dbo.Contractors",
                 c => new
                     {
-                        PK_ContractorId = c.Int(nullable: false, identity: true),
-                        PK_UserTableId = c.Int(nullable: false),
-                        PK_StateId = c.Int(nullable: false),
-                        PK_CityId = c.Int(nullable: false),
+                        ContractorId = c.Int(nullable: false, identity: true),
+                        UserTableId = c.Int(nullable: false),
+                        StateId = c.Int(nullable: false),
+                        CityId = c.Int(nullable: false),
                         ContractorName = c.String(nullable: false, maxLength: 255),
                         ContractorAge = c.Int(nullable: false),
                         ContractorPhone = c.String(nullable: false, maxLength: 15),
@@ -86,49 +69,43 @@ namespace Contrucks.Repository.Migrations
                         DeletedDate = c.DateTime(nullable: false),
                         UserTables_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.PK_ContractorId)
-                .ForeignKey("dbo.Cities", t => t.PK_CityId, cascadeDelete: true)
-                .ForeignKey("dbo.States", t => t.PK_StateId, cascadeDelete: true)
+                .PrimaryKey(t => t.ContractorId)
+                .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: true)
+                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserTables_Id)
-                .Index(t => t.PK_StateId)
-                .Index(t => t.PK_CityId)
+                .Index(t => t.StateId)
+                .Index(t => t.CityId)
                 .Index(t => t.UserTables_Id);
             
             CreateTable(
-                "dbo.JobApplications",
+                "dbo.JobDurations",
                 c => new
                     {
-                        PK_JobApplicationId = c.Int(nullable: false, identity: true),
-                        PK_TruckerId = c.Int(nullable: false),
-                        PK_JobId = c.Int(nullable: false),
-                        CoverLetter = c.String(nullable: false, maxLength: 3000),
-                        AskingPrice = c.Long(nullable: false),
-                        TimeRequired = c.DateTime(nullable: false),
-                        JobApplicationStatus = c.String(),
-                        IsJobAwarded = c.Boolean(nullable: false),
-                        IsActive = c.Boolean(nullable: false),
+                        JobDurationId = c.Int(nullable: false, identity: true),
+                        ContractorId = c.Int(nullable: false),
+                        JobStartTime = c.DateTime(nullable: false),
+                        JobStopTime = c.DateTime(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
+                        CreatedBy = c.String(maxLength: 255),
+                        ModifiedBy = c.String(maxLength: 255),
                         ModifiedDate = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(),
-                        Deleted = c.String(),
-                        DeletedBy = c.String(),
+                        IsActive = c.Boolean(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
+                        DeletedBy = c.String(maxLength: 255),
                         DeletedDate = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.PK_JobApplicationId)
-                .ForeignKey("dbo.NewJobPosts", t => t.PK_JobId, cascadeDelete: true)
-                .ForeignKey("dbo.Truckers", t => t.PK_TruckerId, cascadeDelete: true)
-                .Index(t => t.PK_TruckerId)
-                .Index(t => t.PK_JobId);
+                .PrimaryKey(t => t.JobDurationId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
+                .Index(t => t.ContractorId);
             
             CreateTable(
                 "dbo.NewJobPosts",
                 c => new
                     {
-                        PK_JobId = c.Int(nullable: false, identity: true),
-                        PK_ContractorId = c.Int(nullable: false),
-                        PK_LoadTypeId = c.Int(nullable: false),
-                        PK_TruckTypeId = c.Int(nullable: false),
+                        JobId = c.Int(nullable: false, identity: true),
+                        ContractorId = c.Int(nullable: false),
+                        LoadTypeId = c.Int(nullable: false),
+                        TruckTypeId = c.Int(nullable: false),
                         distance = c.Int(nullable: false),
                         JobTitle = c.String(nullable: false, maxLength: 255),
                         JobDescription = c.String(nullable: false, maxLength: 3000),
@@ -149,20 +126,26 @@ namespace Contrucks.Repository.Migrations
                         DeletedBy = c.String(),
                         DeletedDate = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.PK_JobId)
-                .ForeignKey("dbo.Contractors", t => t.PK_ContractorId, cascadeDelete: true)
-                .ForeignKey("dbo.LoadTypes", t => t.PK_LoadTypeId, cascadeDelete: true)
-                .ForeignKey("dbo.TruckTypes", t => t.PK_TruckTypeId, cascadeDelete: true)
-                .Index(t => t.PK_ContractorId)
-                .Index(t => t.PK_LoadTypeId)
-                .Index(t => t.PK_TruckTypeId);
+                .PrimaryKey(t => t.JobId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
+                .ForeignKey("dbo.LoadTypes", t => t.LoadTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.TruckTypes", t => t.TruckTypeId, cascadeDelete: true)
+                .Index(t => t.ContractorId)
+                .Index(t => t.LoadTypeId)
+                .Index(t => t.TruckTypeId);
             
             CreateTable(
-                "dbo.LoadTypes",
+                "dbo.JobApplications",
                 c => new
                     {
-                        PK_LoadTypeId = c.Int(nullable: false, identity: true),
-                        LoadType = c.String(nullable: false, maxLength: 255),
+                        JobApplicationId = c.Int(nullable: false, identity: true),
+                        TruckerId = c.Int(nullable: false),
+                        JobId = c.Int(nullable: false),
+                        CoverLetter = c.String(nullable: false, maxLength: 3000),
+                        AskingPrice = c.Long(nullable: false),
+                        TimeRequired = c.DateTime(nullable: false),
+                        JobApplicationStatus = c.String(),
+                        IsJobAwarded = c.Boolean(nullable: false),
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
@@ -172,33 +155,46 @@ namespace Contrucks.Repository.Migrations
                         DeletedBy = c.String(),
                         DeletedDate = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.PK_LoadTypeId);
+                .PrimaryKey(t => t.JobApplicationId)
+                .ForeignKey("dbo.NewJobPosts", t => t.JobId, cascadeDelete: true)
+                .ForeignKey("dbo.Truckers", t => t.TruckerId, cascadeDelete: true)
+                .Index(t => t.TruckerId)
+                .Index(t => t.JobId);
             
             CreateTable(
-                "dbo.TruckTypes",
+                "dbo.Messages",
                 c => new
                     {
-                        PK_TruckTypeId = c.Int(nullable: false, identity: true),
-                        Trucktype = c.String(nullable: false, maxLength: 255),
-                        IsActive = c.Boolean(nullable: false),
+                        MessageId = c.Int(nullable: false, identity: true),
+                        JobApplicationId = c.Int(nullable: false),
+                        SenderName = c.String(nullable: false, maxLength: 255),
+                        MessageSubject = c.String(maxLength: 300),
+                        MessageBody = c.String(maxLength: 3000),
+                        MessageDate = c.DateTime(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
+                        CreatedBy = c.String(maxLength: 255),
+                        ModifiedBy = c.String(maxLength: 255),
                         ModifiedDate = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(),
-                        Deleted = c.String(),
+                        IsActive = c.Boolean(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
                         DeletedBy = c.String(),
                         DeletedDate = c.DateTime(nullable: false),
+                        Truckers_TruckerId = c.Int(),
                     })
-                .PrimaryKey(t => t.PK_TruckTypeId);
+                .PrimaryKey(t => t.MessageId)
+                .ForeignKey("dbo.JobApplications", t => t.JobApplicationId, cascadeDelete: true)
+                .ForeignKey("dbo.Truckers", t => t.Truckers_TruckerId)
+                .Index(t => t.JobApplicationId)
+                .Index(t => t.Truckers_TruckerId);
             
             CreateTable(
                 "dbo.Truckers",
                 c => new
                     {
-                        PK_TruckerId = c.Int(nullable: false, identity: true),
-                        PK_UserTableId = c.Int(nullable: false),
-                        PK_StateId = c.Int(nullable: false),
-                        PK_CityId = c.Int(nullable: false),
+                        TruckerId = c.Int(nullable: false, identity: true),
+                        UserTableId = c.Int(nullable: false),
+                        StateId = c.Int(nullable: false),
+                        CityId = c.Int(nullable: false),
                         TruckerName = c.String(nullable: false, maxLength: 255),
                         TruckerAge = c.Int(nullable: false),
                         TruckerLicensePlate = c.String(nullable: false, maxLength: 20),
@@ -213,66 +209,20 @@ namespace Contrucks.Repository.Migrations
                         DeletedDate = c.DateTime(nullable: false),
                         UserTable_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.PK_TruckerId)
-                .ForeignKey("dbo.Cities", t => t.PK_CityId, cascadeDelete: true)
-                .ForeignKey("dbo.States", t => t.PK_StateId, cascadeDelete: true)
+                .PrimaryKey(t => t.TruckerId)
+                .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: true)
+                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserTable_Id)
-                .Index(t => t.PK_StateId)
-                .Index(t => t.PK_CityId)
+                .Index(t => t.StateId)
+                .Index(t => t.CityId)
                 .Index(t => t.UserTable_Id);
             
             CreateTable(
-                "dbo.JobDurations",
+                "dbo.States",
                 c => new
                     {
-                        PK_JobDurationId = c.Int(nullable: false, identity: true),
-                        PK_ContractorId = c.Int(nullable: false),
-                        JobStartTime = c.DateTime(nullable: false),
-                        JobStopTime = c.DateTime(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(maxLength: 255),
-                        ModifiedBy = c.String(maxLength: 255),
-                        ModifiedDate = c.DateTime(nullable: false),
-                        IsActive = c.Boolean(nullable: false),
-                        Deleted = c.Boolean(nullable: false),
-                        DeletedBy = c.String(maxLength: 255),
-                        DeletedDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.PK_JobDurationId)
-                .ForeignKey("dbo.Contractors", t => t.PK_ContractorId, cascadeDelete: true)
-                .Index(t => t.PK_ContractorId);
-            
-            CreateTable(
-                "dbo.Messages",
-                c => new
-                    {
-                        PK_MessageId = c.Int(nullable: false, identity: true),
-                        PK_JobApplicationId = c.Int(nullable: false),
-                        SenderName = c.String(nullable: false, maxLength: 255),
-                        MessageSubject = c.String(maxLength: 300),
-                        MessageBody = c.String(maxLength: 3000),
-                        MessageDate = c.DateTime(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(maxLength: 255),
-                        ModifiedBy = c.String(maxLength: 255),
-                        ModifiedDate = c.DateTime(nullable: false),
-                        IsActive = c.Boolean(nullable: false),
-                        Deleted = c.Boolean(nullable: false),
-                        DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.PK_MessageId)
-                .ForeignKey("dbo.JobApplications", t => t.PK_JobApplicationId, cascadeDelete: true)
-                .Index(t => t.PK_JobApplicationId);
-            
-            CreateTable(
-                "dbo.Ratings",
-                c => new
-                    {
-                        PK_RatingId = c.Int(nullable: false, identity: true),
-                        PK_ContractorId = c.Int(nullable: false),
-                        PK_TruckerId = c.Int(nullable: false),
-                        Rating = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        StateId = c.Int(nullable: false, identity: true),
+                        StateName = c.String(),
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
@@ -282,42 +232,15 @@ namespace Contrucks.Repository.Migrations
                         DeletedBy = c.String(),
                         DeletedDate = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.PK_RatingId)
-                .ForeignKey("dbo.Contractors", t => t.PK_ContractorId, cascadeDelete: true)
-                .ForeignKey("dbo.Truckers", t => t.PK_TruckerId, cascadeDelete: true)
-                .Index(t => t.PK_ContractorId)
-                .Index(t => t.PK_TruckerId);
-            
-            CreateTable(
-                "dbo.Transactions",
-                c => new
-                    {
-                        PK_TransactionId = c.Int(nullable: false, identity: true),
-                        PK_ContractorId = c.Int(nullable: false),
-                        PK_TruckerId = c.Int(nullable: false),
-                        TransactionStatus = c.String(maxLength: 15),
-                        IsActive = c.Boolean(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                        CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(),
-                        Deleted = c.String(),
-                        DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.PK_TransactionId)
-                .ForeignKey("dbo.Contractors", t => t.PK_ContractorId, cascadeDelete: true)
-                .ForeignKey("dbo.Truckers", t => t.PK_TruckerId, cascadeDelete: true)
-                .Index(t => t.PK_ContractorId)
-                .Index(t => t.PK_TruckerId);
+                .PrimaryKey(t => t.StateId);
             
             CreateTable(
                 "dbo.TruckerDetails",
                 c => new
                     {
-                        PK_TruckId = c.Int(nullable: false, identity: true),
-                        PK_TruckerId = c.Int(nullable: false),
-                        PK_TruckTypeId = c.Int(nullable: false),
+                        TruckId = c.Int(nullable: false, identity: true),
+                        TruckerId = c.Int(nullable: false),
+                        TruckTypeId = c.Int(nullable: false),
                         TruckNumber = c.String(nullable: false, maxLength: 255),
                         TruckMileage = c.Decimal(nullable: false, precision: 18, scale: 2),
                         MaximumWeightBearable = c.Decimal(nullable: false, precision: 18, scale: 2),
@@ -332,70 +255,155 @@ namespace Contrucks.Repository.Migrations
                         DeletedBy = c.String(),
                         DeletedDate = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.PK_TruckId)
-                .ForeignKey("dbo.Truckers", t => t.PK_TruckerId, cascadeDelete: true)
-                .ForeignKey("dbo.TruckTypes", t => t.PK_TruckTypeId, cascadeDelete: true)
-                .Index(t => t.PK_TruckerId)
-                .Index(t => t.PK_TruckTypeId);
+                .PrimaryKey(t => t.TruckId)
+                .ForeignKey("dbo.Truckers", t => t.TruckerId, cascadeDelete: true)
+                .ForeignKey("dbo.TruckTypes", t => t.TruckTypeId, cascadeDelete: true)
+                .Index(t => t.TruckerId)
+                .Index(t => t.TruckTypeId);
             
+            CreateTable(
+                "dbo.TruckTypes",
+                c => new
+                    {
+                        TruckTypeId = c.Int(nullable: false, identity: true),
+                        Trucktype = c.String(nullable: false, maxLength: 255),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                        CreatedBy = c.String(),
+                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedBy = c.String(),
+                        Deleted = c.String(),
+                        DeletedBy = c.String(),
+                        DeletedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.TruckTypeId);
+            
+            CreateTable(
+                "dbo.LoadTypes",
+                c => new
+                    {
+                        LoadTypeId = c.Int(nullable: false, identity: true),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                        CreatedBy = c.String(),
+                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedBy = c.String(),
+                        Deleted = c.String(),
+                        DeletedBy = c.String(),
+                        DeletedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.LoadTypeId);
+            
+            CreateTable(
+                "dbo.Transactions",
+                c => new
+                    {
+                        TransactionId = c.Int(nullable: false, identity: true),
+                        ContractorId = c.Int(nullable: false),
+                        TruckerId = c.Int(nullable: false),
+                        TransactionStatus = c.String(maxLength: 15),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                        CreatedBy = c.String(),
+                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedBy = c.String(),
+                        Deleted = c.String(),
+                        DeletedBy = c.String(),
+                        DeletedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.TransactionId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
+                .ForeignKey("dbo.Truckers", t => t.TruckerId, cascadeDelete: true)
+                .Index(t => t.ContractorId)
+                .Index(t => t.TruckerId);
+            
+            CreateTable(
+                "dbo.Ratings",
+                c => new
+                    {
+                        RatingId = c.Int(nullable: false, identity: true),
+                        ContractorId = c.Int(nullable: false),
+                        TruckerId = c.Int(nullable: false),
+                        Rating = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                        CreatedBy = c.String(),
+                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedBy = c.String(),
+                        Deleted = c.String(),
+                        DeletedBy = c.String(),
+                        DeletedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.RatingId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
+                .ForeignKey("dbo.Truckers", t => t.TruckerId, cascadeDelete: true)
+                .Index(t => t.ContractorId)
+                .Index(t => t.TruckerId);
+            
+            AddColumn("dbo.AspNetUsers", "UserTableId", c => c.Int());
+            DropColumn("dbo.AspNetUsers", "PK_UserTableId");
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.TruckerDetails", "PK_TruckTypeId", "dbo.TruckTypes");
-            DropForeignKey("dbo.TruckerDetails", "PK_TruckerId", "dbo.Truckers");
-            DropForeignKey("dbo.Transactions", "PK_TruckerId", "dbo.Truckers");
-            DropForeignKey("dbo.Transactions", "PK_ContractorId", "dbo.Contractors");
-            DropForeignKey("dbo.Ratings", "PK_TruckerId", "dbo.Truckers");
-            DropForeignKey("dbo.Ratings", "PK_ContractorId", "dbo.Contractors");
-            DropForeignKey("dbo.Messages", "PK_JobApplicationId", "dbo.JobApplications");
-            DropForeignKey("dbo.JobDurations", "PK_ContractorId", "dbo.Contractors");
-            DropForeignKey("dbo.JobApplications", "PK_TruckerId", "dbo.Truckers");
-            DropForeignKey("dbo.Truckers", "UserTable_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Truckers", "PK_StateId", "dbo.States");
-            DropForeignKey("dbo.Truckers", "PK_CityId", "dbo.Cities");
-            DropForeignKey("dbo.JobApplications", "PK_JobId", "dbo.NewJobPosts");
-            DropForeignKey("dbo.NewJobPosts", "PK_TruckTypeId", "dbo.TruckTypes");
-            DropForeignKey("dbo.NewJobPosts", "PK_LoadTypeId", "dbo.LoadTypes");
-            DropForeignKey("dbo.NewJobPosts", "PK_ContractorId", "dbo.Contractors");
+            AddColumn("dbo.AspNetUsers", "PK_UserTableId", c => c.Int());
+            DropForeignKey("dbo.Ratings", "TruckerId", "dbo.Truckers");
+            DropForeignKey("dbo.Ratings", "ContractorId", "dbo.Contractors");
             DropForeignKey("dbo.Contractors", "UserTables_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Contractors", "PK_StateId", "dbo.States");
-            DropForeignKey("dbo.Contractors", "PK_CityId", "dbo.Cities");
-            DropForeignKey("dbo.Cities", "PK_StateId", "dbo.States");
+            DropForeignKey("dbo.Transactions", "TruckerId", "dbo.Truckers");
+            DropForeignKey("dbo.Transactions", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.NewJobPosts", "TruckTypeId", "dbo.TruckTypes");
+            DropForeignKey("dbo.NewJobPosts", "LoadTypeId", "dbo.LoadTypes");
+            DropForeignKey("dbo.JobApplications", "TruckerId", "dbo.Truckers");
+            DropForeignKey("dbo.Truckers", "UserTable_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.TruckerDetails", "TruckTypeId", "dbo.TruckTypes");
+            DropForeignKey("dbo.TruckerDetails", "TruckerId", "dbo.Truckers");
+            DropForeignKey("dbo.Truckers", "StateId", "dbo.States");
+            DropForeignKey("dbo.Contractors", "StateId", "dbo.States");
+            DropForeignKey("dbo.Cities", "StateId", "dbo.States");
+            DropForeignKey("dbo.Messages", "Truckers_TruckerId", "dbo.Truckers");
+            DropForeignKey("dbo.Truckers", "CityId", "dbo.Cities");
+            DropForeignKey("dbo.JobApplications", "JobId", "dbo.NewJobPosts");
+            DropForeignKey("dbo.Messages", "JobApplicationId", "dbo.JobApplications");
+            DropForeignKey("dbo.NewJobPosts", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.JobDurations", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.Contractors", "CityId", "dbo.Cities");
             DropForeignKey("dbo.Balances", "UserTables_Id", "dbo.AspNetUsers");
-            DropIndex("dbo.TruckerDetails", new[] { "PK_TruckTypeId" });
-            DropIndex("dbo.TruckerDetails", new[] { "PK_TruckerId" });
-            DropIndex("dbo.Transactions", new[] { "PK_TruckerId" });
-            DropIndex("dbo.Transactions", new[] { "PK_ContractorId" });
-            DropIndex("dbo.Ratings", new[] { "PK_TruckerId" });
-            DropIndex("dbo.Ratings", new[] { "PK_ContractorId" });
-            DropIndex("dbo.Messages", new[] { "PK_JobApplicationId" });
-            DropIndex("dbo.JobDurations", new[] { "PK_ContractorId" });
+            DropIndex("dbo.Ratings", new[] { "TruckerId" });
+            DropIndex("dbo.Ratings", new[] { "ContractorId" });
+            DropIndex("dbo.Transactions", new[] { "TruckerId" });
+            DropIndex("dbo.Transactions", new[] { "ContractorId" });
+            DropIndex("dbo.TruckerDetails", new[] { "TruckTypeId" });
+            DropIndex("dbo.TruckerDetails", new[] { "TruckerId" });
             DropIndex("dbo.Truckers", new[] { "UserTable_Id" });
-            DropIndex("dbo.Truckers", new[] { "PK_CityId" });
-            DropIndex("dbo.Truckers", new[] { "PK_StateId" });
-            DropIndex("dbo.NewJobPosts", new[] { "PK_TruckTypeId" });
-            DropIndex("dbo.NewJobPosts", new[] { "PK_LoadTypeId" });
-            DropIndex("dbo.NewJobPosts", new[] { "PK_ContractorId" });
-            DropIndex("dbo.JobApplications", new[] { "PK_JobId" });
-            DropIndex("dbo.JobApplications", new[] { "PK_TruckerId" });
+            DropIndex("dbo.Truckers", new[] { "CityId" });
+            DropIndex("dbo.Truckers", new[] { "StateId" });
+            DropIndex("dbo.Messages", new[] { "Truckers_TruckerId" });
+            DropIndex("dbo.Messages", new[] { "JobApplicationId" });
+            DropIndex("dbo.JobApplications", new[] { "JobId" });
+            DropIndex("dbo.JobApplications", new[] { "TruckerId" });
+            DropIndex("dbo.NewJobPosts", new[] { "TruckTypeId" });
+            DropIndex("dbo.NewJobPosts", new[] { "LoadTypeId" });
+            DropIndex("dbo.NewJobPosts", new[] { "ContractorId" });
+            DropIndex("dbo.JobDurations", new[] { "ContractorId" });
             DropIndex("dbo.Contractors", new[] { "UserTables_Id" });
-            DropIndex("dbo.Contractors", new[] { "PK_CityId" });
-            DropIndex("dbo.Contractors", new[] { "PK_StateId" });
-            DropIndex("dbo.Cities", new[] { "PK_StateId" });
+            DropIndex("dbo.Contractors", new[] { "CityId" });
+            DropIndex("dbo.Contractors", new[] { "StateId" });
+            DropIndex("dbo.Cities", new[] { "StateId" });
             DropIndex("dbo.Balances", new[] { "UserTables_Id" });
-            DropTable("dbo.TruckerDetails");
-            DropTable("dbo.Transactions");
+            DropColumn("dbo.AspNetUsers", "UserTableId");
             DropTable("dbo.Ratings");
-            DropTable("dbo.Messages");
-            DropTable("dbo.JobDurations");
-            DropTable("dbo.Truckers");
-            DropTable("dbo.TruckTypes");
+            DropTable("dbo.Transactions");
             DropTable("dbo.LoadTypes");
-            DropTable("dbo.NewJobPosts");
-            DropTable("dbo.JobApplications");
-            DropTable("dbo.Contractors");
+            DropTable("dbo.TruckTypes");
+            DropTable("dbo.TruckerDetails");
             DropTable("dbo.States");
+            DropTable("dbo.Truckers");
+            DropTable("dbo.Messages");
+            DropTable("dbo.JobApplications");
+            DropTable("dbo.NewJobPosts");
+            DropTable("dbo.JobDurations");
+            DropTable("dbo.Contractors");
             DropTable("dbo.Cities");
             DropTable("dbo.Balances");
         }

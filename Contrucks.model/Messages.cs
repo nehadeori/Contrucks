@@ -7,28 +7,30 @@ namespace Contrucks.model
     public class Messages
     {
         [Key]
-        public int PK_MessageId { get; set; }
-        public int PK_JobApplicationId { get; set; }
-       // [ForeignKey("FK_JobApplicationId")]
-        public JobApplications JobApplications { get; set; }
+        public int MessageId { get; set; }
+
+        //foreign key for JobApplications
+        public int JobApplicationId { get; set; }
+     
+        public virtual JobApplications JobApplications { get; set; }
         [Required]
         [MaxLength(255)]
-        public string SenderName { get; set; }
+        public virtual string SenderName { get; set; }
         [MaxLength(300)]
-        public string MessageSubject { get; set; }
+        public virtual string MessageSubject { get; set; }
         [MaxLength(3000)]
-        public string MessageBody { get; set; }
-        public DateTime MessageDate { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public virtual string MessageBody { get; set; }
+        public virtual DateTime MessageDate { get; set; }
+        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
         [MaxLength(255)]
-        public string CreatedBy { get; set; }
+        public virtual string CreatedBy { get; set; }
         [MaxLength(255)]
-        public string ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public bool IsActive { get; set; }
-        public bool Deleted { get; set; }
-        public string DeletedBy { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public virtual string ModifiedBy { get; set; }
+        public virtual DateTime ModifiedDate { get; set; }
+        public virtual bool IsActive { get; set; }
+        public virtual bool Deleted { get; set; }
+        public virtual string DeletedBy { get; set; }
+        public virtual DateTime DeletedDate { get; set; }
 
     }
 }

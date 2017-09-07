@@ -7,23 +7,26 @@ namespace Contrucks.model
     public class JobDuration
     {
         [Key]
-        public int PK_JobDurationId { get; set; }
-        public int PK_ContractorId { get; set; }
-      //  [ForeignKey("FK_ContractorId")]
-        public Contractors Contractor { get; set; }
-        public DateTime JobStartTime { get; set; }
-        public DateTime JobStopTime { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public int JobDurationId { get; set; }
+        
+        //foreign key for Contractors
+        public int ContractorId { get; set; }
+
+    
+        public virtual Contractors Contractor { get; set; }
+        public virtual DateTime JobStartTime { get; set; }
+        public virtual DateTime JobStopTime { get; set; }
+        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
         [MaxLength(255)]
-        public string CreatedBy { get; set; }
+        public virtual string CreatedBy { get; set; }
         [MaxLength(255)]
         public virtual string ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public bool IsActive { get; set; }
-        public bool Deleted { get; set; }
+        public virtual DateTime ModifiedDate { get; set; }
+        public virtual bool IsActive { get; set; }
+        public virtual bool Deleted { get; set; }
         [MaxLength(255)]
-        public string DeletedBy { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public virtual string DeletedBy { get; set; }
+        public virtual DateTime DeletedDate { get; set; }
 
     }
 }

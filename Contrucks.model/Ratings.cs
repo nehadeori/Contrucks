@@ -7,22 +7,28 @@ namespace Contrucks.model
     public class Ratings
     {
         [Key]
-        public int PK_RatingId { get; set; }
-        public int PK_ContractorId { get; set; }
-        //[ForeignKey("FK_ContractorId")]
-        public Contractors Contractor { get; set; }
-        public int PK_TruckerId { get; set; }
-       // [ForeignKey("FK_TruckerId")]
-        public Truckers Trucker { get; set; }
+        public int RatingId { get; set; }
+
+        //foreign key for Contractors
+        public int ContractorId { get; set; }
+
+      
+        public virtual Contractors Contractor { get; set; }
+
+        //foreign key for Truckers
+        public  int TruckerId { get; set; }
+
+        public virtual Truckers Trucker { get; set; }
+
         [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Values")]
-        public decimal Rating { get; set; }
-        public bool IsActive { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public string CreatedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public string ModifiedBy { get; set; }
-        public string Deleted { get; set; }
-        public string DeletedBy { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public virtual decimal Rating { get; set; }
+        public virtual bool IsActive { get; set; }
+        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
+        public virtual string CreatedBy { get; set; }
+        public virtual DateTime ModifiedDate { get; set; }
+        public virtual string ModifiedBy { get; set; }
+        public virtual string Deleted { get; set; }
+        public virtual string DeletedBy { get; set; }
+        public virtual DateTime DeletedDate { get; set; }
     }
 }

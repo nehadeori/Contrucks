@@ -55,8 +55,8 @@ namespace Contrucks.Controllers
                 distance = recentVM.distance,
                 LoadWeight = recentVM.LoadWeight,
                 Budget = recentVM.Budget,
-                PK_LoadTypeId = recentVM.PK_LoadTypeId,
-                PK_TruckTypeId = recentVM.PK_TruckTypeId
+                LoadTypeId = recentVM.PK_LoadTypeId,
+                TruckTypeId = recentVM.PK_TruckTypeId
                 
             };
             

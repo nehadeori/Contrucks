@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Contrucks.Repository
 {
-    public class CustomerContext : IdentityDbContext
+    public class ConTruckContext : IdentityDbContext
     {   
-        public CustomerContext() : base("ConTruckConnectionString")
+        public ConTruckContext() : base("ConTruckConnectionString")
         {
         }
         public DbSet<Contractors> Contractors { get; set; }
@@ -30,13 +30,16 @@ namespace Contrucks.Repository
         public DbSet<Balance> Balance { get; set; }
         public DbSet<Ratings> Ratings { get; set; }
 
-        /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<State>().HasMany(t => t.Contractors).WithRequired(a => a.State).WillCascadeOnDelete(false); //add this line code
-           
+            modelBuilder.Entity<City>().HasMany(t => t.Contractors).WithRequired(a => a.City).WillCascadeOnDelete(false); //add this line code
+            modelBuilder.Entity<City>().HasMany(t => t.Truckers).WithRequired(a => a.City).WillCascadeOnDelete(false); //add this line code
+            modelBuilder.Entity<State>().HasMany(t => t.Truckers).WithRequired(a => a.State).WillCascadeOnDelete(false); //add this line code
+
         }
-        */
+
         public virtual void Commit()
         {
             base.SaveChanges();

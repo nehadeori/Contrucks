@@ -10,7 +10,7 @@ namespace Contrucks.Repository.Infrastructure
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        private CustomerContext dataContext;
+        private ConTruckContext dataContext;
         private readonly IDbSet<T> dbset;
         protected RepositoryBase(IDatabaseFactory databaseFactory)
         {
@@ -22,7 +22,7 @@ namespace Contrucks.Repository.Infrastructure
             get;
             private set;
         }
-        protected CustomerContext DataContext
+        protected ConTruckContext DataContext
         {
             get { return dataContext ?? (dataContext = DatabaseFactory.Get()); }
         }

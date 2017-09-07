@@ -8,10 +8,10 @@ namespace Contrucks.Repository.Infrastructure
 {
     public class DatabaseFactory : Disposable, IDatabaseFactory
     {
-        private CustomerContext dataContext;
-        public CustomerContext Get()
+        private ConTruckContext dataContext;
+        public ConTruckContext Get()
         {
-            return dataContext ?? (dataContext = new CustomerContext());
+            return dataContext ?? (dataContext = new ConTruckContext());
         }
         protected override void DisposeCore()
         {

@@ -70,9 +70,9 @@ namespace Contrucks.Repository.Migrations
                         UserTables_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ContractorId)
-                .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: true)
-                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
+                .ForeignKey("dbo.States", t => t.StateId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserTables_Id)
+                .ForeignKey("dbo.Cities", t => t.CityId)
                 .Index(t => t.StateId)
                 .Index(t => t.CityId)
                 .Index(t => t.UserTables_Id);
@@ -210,9 +210,9 @@ namespace Contrucks.Repository.Migrations
                         UserTable_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.TruckerId)
-                .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: true)
-                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
+                .ForeignKey("dbo.States", t => t.StateId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserTable_Id)
+                .ForeignKey("dbo.Cities", t => t.CityId)
                 .Index(t => t.StateId)
                 .Index(t => t.CityId)
                 .Index(t => t.UserTable_Id);
@@ -349,6 +349,8 @@ namespace Contrucks.Repository.Migrations
             AddColumn("dbo.AspNetUsers", "PK_UserTableId", c => c.Int());
             DropForeignKey("dbo.Ratings", "TruckerId", "dbo.Truckers");
             DropForeignKey("dbo.Ratings", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.Truckers", "CityId", "dbo.Cities");
+            DropForeignKey("dbo.Contractors", "CityId", "dbo.Cities");
             DropForeignKey("dbo.Contractors", "UserTables_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.Transactions", "TruckerId", "dbo.Truckers");
             DropForeignKey("dbo.Transactions", "ContractorId", "dbo.Contractors");
@@ -362,12 +364,10 @@ namespace Contrucks.Repository.Migrations
             DropForeignKey("dbo.Contractors", "StateId", "dbo.States");
             DropForeignKey("dbo.Cities", "StateId", "dbo.States");
             DropForeignKey("dbo.Messages", "Truckers_TruckerId", "dbo.Truckers");
-            DropForeignKey("dbo.Truckers", "CityId", "dbo.Cities");
             DropForeignKey("dbo.JobApplications", "JobId", "dbo.NewJobPosts");
             DropForeignKey("dbo.Messages", "JobApplicationId", "dbo.JobApplications");
             DropForeignKey("dbo.NewJobPosts", "ContractorId", "dbo.Contractors");
             DropForeignKey("dbo.JobDurations", "ContractorId", "dbo.Contractors");
-            DropForeignKey("dbo.Contractors", "CityId", "dbo.Cities");
             DropForeignKey("dbo.Balances", "UserTables_Id", "dbo.AspNetUsers");
             DropIndex("dbo.Ratings", new[] { "TruckerId" });
             DropIndex("dbo.Ratings", new[] { "ContractorId" });

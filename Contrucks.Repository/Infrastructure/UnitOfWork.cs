@@ -9,12 +9,12 @@ namespace Contrucks.Repository.Infrastructure
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDatabaseFactory databaseFactory;
-        private CustomerContext dataContext;
+        private ConTruckContext dataContext;
         public UnitOfWork(IDatabaseFactory databaseFactory)
         {
             this.databaseFactory = databaseFactory;
         }
-        protected CustomerContext DataContext
+        protected ConTruckContext DataContext
         {
             get { return dataContext ?? (dataContext = databaseFactory.Get()); }
         }

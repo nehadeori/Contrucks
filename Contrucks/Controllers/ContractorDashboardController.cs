@@ -1,12 +1,7 @@
-﻿using Contrucks.model;
-using Contrucks.model.ViewModels;
+﻿using Contrucks.model.ViewModels;
+using Contrucks.Repository.Repository;
 using Contrucks.Service;
-using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using Contrucks.Service.Interfaces;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -14,12 +9,12 @@ namespace Contrucks.Controllers
 {
     public class ContractorDashboardController : ApiController
     {
-        RecentJobPostService recentPostService;
+        IRecentJobPostService recentPostService;
         public ContractorDashboardController()
         {
 
         }
-        public ContractorDashboardController(RecentJobPostService rec)
+        public ContractorDashboardController(IRecentJobPostService rec)
         {
             recentPostService = rec;
         }
@@ -39,32 +34,7 @@ namespace Contrucks.Controllers
         [Route("api/ContractorDashboard/SetData")]
         public async Task<IHttpActionResult> SetData(RecentpostViewmodel recentVM)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            NewJobPosts nw = new NewJobPosts
-            {
-                JobTitle = recentVM.JobTitle,
-                JobStartDate = recentVM.JobStartDate,
-                JobEndDate = recentVM.JobEndDate,
-                JobDescription = recentVM.JobDescription,
-                EstimatedTime = recentVM.EstimatedTime,
-                SourceAddress = recentVM.SourceAddress,
-                DestinationAddress = recentVM.DestinationAddress,
-                distance = recentVM.distance,
-                LoadWeight = recentVM.LoadWeight,
-                Budget = recentVM.Budget,
-                LoadTypeId = recentVM.PK_LoadTypeId,
-                TruckTypeId = recentVM.PK_TruckTypeId
-                
-            };
-            
-            if(nw== null)
-            {
-                return StatusCode(HttpStatusCode.NoContent);
-            }
-            recentPostService.AddData(nw);
+            recentPostService.AddData(recentVM);
             return Ok();
         }
 
@@ -73,6 +43,38 @@ namespace Contrucks.Controllers
 
 
 }
+
+
+
+ //if (!ModelState.IsValid)
+ //           {
+ //               return BadRequest(ModelState);
+ //           }
+ //           NewJobPosts nw = new NewJobPosts
+ //           {
+ //               JobTitle = recentVM.JobTitle,
+ //               JobStartDate = recentVM.JobStartDate,
+ //               JobEndDate = recentVM.JobEndDate,
+ //               JobDescription = recentVM.JobDescription,
+ //               EstimatedTime = recentVM.EstimatedTime,
+ //               SourceAddress = recentVM.SourceAddress,
+ //               DestinationAddress = recentVM.DestinationAddress,
+ //               distance = recentVM.distance,
+ //               LoadWeight = recentVM.LoadWeight,
+ //               Budget = recentVM.Budget,
+ //               PK_LoadTypeId = recentVM.PK_LoadTypeId,
+ //               PK_TruckTypeId = recentVM.PK_TruckTypeId
+
+ //           };
+            
+ //           if(nw== null)
+ //           {
+ //               return StatusCode(HttpStatusCode.NoContent);
+ //           }
+ //           recentPostService.AddData(nw);
+ //           return Ok();
+
+
 //// GET api/Account/UserInfo
 //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
 //[Route("UserInfo")]

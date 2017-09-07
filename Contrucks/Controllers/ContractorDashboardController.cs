@@ -22,12 +22,12 @@ namespace Contrucks.Controllers
         {
             recentPostService = rec;
         }
-        [Route("GetAll")]
+        [Route("GetAllData")]
         public IHttpActionResult GetAllData()
         {
             //var user = User.Identity.GetUserId();
 
-            var authors = recentPostService.GetAllCustomers();
+            var authors = recentPostService.GetAll();
             return Ok(authors);
 
         }

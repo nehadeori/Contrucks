@@ -17,7 +17,7 @@ namespace Contrucks.Service
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<RecentpostViewmodel> GetAllCustomers()
+        public IEnumerable<RecentpostViewmodel> GetAll()
         {
             return usertableRepository.GetAll();
         }
@@ -30,14 +30,14 @@ namespace Contrucks.Service
 
 
 
-        IEnumerable<RecentpostViewmodel> IRecentJobPostService.GetAllCustomers()
+        IEnumerable<RecentpostViewmodel> IRecentJobPostService.GetAll()
         {
             throw new NotImplementedException();
         }
 
         public interface IRecentJobPostService
         {
-            IEnumerable<RecentpostViewmodel> GetAllCustomers();
+            IEnumerable<RecentpostViewmodel> GetAll();
             void AddUser(RecentpostViewmodel usertables);
         }
 

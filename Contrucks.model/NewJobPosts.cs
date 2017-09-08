@@ -15,10 +15,10 @@ namespace Contrucks.model
 
 
         //foreign key for LoadType
-        public virtual int LoadTypeId { get; set; }
+        public virtual int? LoadTypeId { get; set; }
 
         //foreign key for TruckType
-        public virtual int TruckTypeId { get; set; }
+        public virtual int? TruckTypeId { get; set; }
 
 
         [Required(ErrorMessage = "This Field is Required")]
@@ -54,13 +54,13 @@ namespace Contrucks.model
         [DataType(DataType.DateTime)]
         public virtual DateTime? PostedDate { get; set; } = DateTime.Now;
         public virtual bool IsActive { get; set; }
-        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
+        public virtual DateTime? CreatedDate { get; set; } = DateTime.Now;
         public virtual string CreatedBy { get; set; }
-        public virtual DateTime ModifiedDate { get; set; }
+        public virtual DateTime? ModifiedDate { get; set; }
         public virtual string ModifiedBy { get; set; }
-        public virtual string Deleted { get; set; }
+        public virtual bool Deleted { get; set; }
         public virtual string DeletedBy { get; set; }
-        public virtual DateTime DeletedDate { get; set; }
+        public virtual DateTime? DeletedDate { get; set; }
 
 
         public virtual Contractors Contractor { get; set; }

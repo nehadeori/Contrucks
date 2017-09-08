@@ -23,11 +23,11 @@ namespace Contrucks.model
         public string CreatedBy { get; set; }
         [MaxLength(255)]
         public virtual string ModifiedBy { get; set; }
-        public virtual DateTime ModifiedDate { get; set; }
+        public virtual DateTime? ModifiedDate { get; set; }
         public virtual bool IsActive { get; set; }
         public virtual bool Deleted { get; set; }
         [MaxLength(255)]
         public virtual string DeletedBy { get; set; }
-        public virtual DateTime DeletedDate { get; set; }
+        public virtual DateTime? DeletedDate { get; set; }
     }
 }

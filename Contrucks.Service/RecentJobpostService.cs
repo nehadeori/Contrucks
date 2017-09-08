@@ -5,6 +5,8 @@ using Contrucks.Repository.Infrastructure;
 using Contrucks.Repository.Repository;
 using Contrucks.Service.Interfaces;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 
 namespace Contrucks.Service
 {
@@ -27,22 +29,32 @@ namespace Contrucks.Service
         public void AddData(RecentpostViewmodel usertables)
         {
             //ConTruckContext context = new ConTruckContext();
-            NewJobPosts njp = new NewJobPosts
+
+            try
             {
-                distance = usertables.distance,
-                JobTitle = usertables.JobTitle,
-                JobDescription = usertables.JobDescription,
-                JobStartDate = usertables.JobStartDate,
-                JobEndDate = usertables.JobEndDate,
-                EstimatedTime = usertables.EstimatedTime,
-                SourceAddress = usertables.SourceAddress,
-                DestinationAddress = usertables.DestinationAddress,
-                LoadWeight = usertables.LoadWeight,
-                Budget = usertables.Budget,
-                LoadTypeId = usertables.LoadTypeId,
-                TruckTypeId = usertables.TruckTypeId
-            };
-            usertableRepository.Add(njp);
+                NewJobPosts njp = new NewJobPosts
+                {
+                    distance = usertables.distance,
+                    JobTitle = usertables.JobTitle,
+                    JobDescription = usertables.JobDescription,
+                    JobStartDate = usertables.JobStartDate,
+                    JobEndDate = usertables.JobEndDate,
+                    EstimatedTime = usertables.EstimatedTime,
+                    SourceAddress = usertables.SourceAddress,
+                    DestinationAddress = usertables.DestinationAddress,
+                    LoadWeight = usertables.LoadWeight,
+                    Budget = usertables.Budget,
+                    LoadTypeId = usertables.LoadTypeId,
+                    TruckTypeId = usertables.TruckTypeId
+                };
+                usertableRepository.Add(njp);
+            }
+            catch (System.Exception)
+            {
+                throw new System.Exception();
+
+            }
+           
             unitOfWork.Commit();
         }
 

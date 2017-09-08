@@ -11,7 +11,7 @@ namespace Contrucks.model
         public int JobId { get; set; }
 
         //foreign key for Contractors
-        public int ContractorId { get; set; }
+        public int? ContractorId { get; set; }
 
 
         //foreign key for LoadType

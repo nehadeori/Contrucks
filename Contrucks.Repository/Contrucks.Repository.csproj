@@ -65,21 +65,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201709051135183_InitialTable.cs" />
-    <Compile Include="Migrations\201709051135183_InitialTable.Designer.cs">
-      <DependentUpon>201709051135183_InitialTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709051201581_InitialTable1.cs" />
-    <Compile Include="Migrations\201709051201581_InitialTable1.Designer.cs">
-      <DependentUpon>201709051201581_InitialTable1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709070705330_Creating-NewJobPosts_Table.cs" />
-    <Compile Include="Migrations\201709070705330_Creating-NewJobPosts_Table.Designer.cs">
-      <DependentUpon>201709070705330_Creating-NewJobPosts_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709080752321_Nullable-Int.cs" />
-    <Compile Include="Migrations\201709080752321_Nullable-Int.Designer.cs">
-      <DependentUpon>201709080752321_Nullable-Int.cs</DependentUpon>
+    <Compile Include="Migrations\201709080840053_Nullable-Int.cs" />
+    <Compile Include="Migrations\201709080840053_Nullable-Int.Designer.cs">
+      <DependentUpon>201709080840053_Nullable-Int.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,17 +86,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709051135183_InitialTable.resx">
-      <DependentUpon>201709051135183_InitialTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709051201581_InitialTable1.resx">
-      <DependentUpon>201709051201581_InitialTable1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709070705330_Creating-NewJobPosts_Table.resx">
-      <DependentUpon>201709070705330_Creating-NewJobPosts_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709080752321_Nullable-Int.resx">
-      <DependentUpon>201709080752321_Nullable-Int.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709080840053_Nullable-Int.resx">
+      <DependentUpon>201709080840053_Nullable-Int.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

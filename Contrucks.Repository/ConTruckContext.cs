@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace Contrucks.Repository
 {
-    public class ConTruckContext : IdentityDbContext
+    public class ConTruckContext : IdentityDbContext 
     {   
         public ConTruckContext() : base("ConTruckConnectionString")
         {

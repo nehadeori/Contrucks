@@ -19,6 +19,10 @@ namespace Contrucks
             // Web API configuration and services
             var settings = config.Formatters.JsonFormatter.SerializerSettings;
 
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
             //settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             settings.Formatting = Formatting.Indented;
             // Web API configuration and services

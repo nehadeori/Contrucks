@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Contrucks.Repository
 {
-    public class CustomerContext : IdentityDbContext
+    public class ConTruckContext : IdentityDbContext
     {   
-        public CustomerContext() : base("ConTruckConnectionString")
+        public ConTruckContext() : base("ConTruckConnectionString")
         {
         }
         public DbSet<Contractors> Contractors { get; set; }

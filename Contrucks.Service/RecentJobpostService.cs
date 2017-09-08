@@ -1,4 +1,6 @@
-﻿using Contrucks.model.ViewModels;
+﻿using Contrucks.model;
+using Contrucks.model.ViewModels;
+using Contrucks.Repository;
 using Contrucks.Repository.Infrastructure;
 using Contrucks.Repository.Repository;
 using Contrucks.Service.Interfaces;
@@ -24,7 +26,14 @@ namespace Contrucks.Service
 
         public void AddData(RecentpostViewmodel usertables)
         {
-            usertableRepository.Add(usertables);
+            //usertableRepository.Add(usertables);
+            ConTruckContext context = new ConTruckContext();
+            NewJobPosts njp = new NewJobPosts
+            {
+                Budget = usertables.Budget,
+
+                
+            }; 
             unitOfWork.Commit();
         }
 

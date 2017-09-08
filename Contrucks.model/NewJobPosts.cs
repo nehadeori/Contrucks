@@ -14,22 +14,12 @@ namespace Contrucks.model
         public int ContractorId { get; set; }
 
 
-
-        public virtual Contractors Contractor { get; set; }
-
         //foreign key for LoadType
         public int LoadTypeId { get; set; }
-
-      
-        public virtual LoadTypes LoadType { get; set; }
-
-    
 
         //foreign key for TruckType
         public int TruckTypeId { get; set; }
 
-
-         public virtual TruckTypes TruckType { get; set; }
 
         [Required(ErrorMessage = "This Field is Required")]
         [Range(0,10000)]
@@ -71,6 +61,11 @@ namespace Contrucks.model
         public virtual string Deleted { get; set; }
         public virtual string DeletedBy { get; set; }
         public virtual DateTime DeletedDate { get; set; }
+
+
+        public virtual Contractors Contractor { get; set; }
+        public virtual LoadTypes LoadType { get; set; }
+        public virtual TruckTypes TruckType { get; set; }
 
         public virtual ICollection<JobApplications> JobApplications { get; set; }
     }

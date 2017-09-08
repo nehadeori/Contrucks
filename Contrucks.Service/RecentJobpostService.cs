@@ -1,4 +1,5 @@
-﻿using Contrucks.model.ViewModels;
+﻿using Contrucks.model;
+using Contrucks.model.ViewModels;
 using Contrucks.Repository;
 using Contrucks.Repository.Infrastructure;
 using Contrucks.Repository.Repository;
@@ -18,16 +19,28 @@ namespace Contrucks.Service
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<RecentpostViewmodel> GetAll()
+        public IEnumerable<NewJobPosts> GetAll()
         {
             return usertableRepository.GetAll();
         }
 
         public void AddData(RecentpostViewmodel usertables)
         {
-            ConTruckContext context = new ConTruckContext();
-            NewJobPost 
-            usertableRepository.Add(usertables);
+            //ConTruckContext context = new ConTruckContext();
+            NewJobPosts njp = new NewJobPosts
+            {
+                distance = usertables.distance,
+                JobTitle = usertables.JobTitle,
+                JobDescription = usertables.JobDescription,
+                JobStartDate = usertables.JobStartDate,
+                JobEndDate = usertables.JobEndDate,
+                EstimatedTime = usertables.EstimatedTime,
+                SourceAddress = usertables.SourceAddress,
+                DestinationAddress = usertables.DestinationAddress,
+                LoadWeight = usertables.LoadWeight,
+                Budget = usertables.Budget
+            };
+            usertableRepository.Add(njp);
             unitOfWork.Commit();
         }
 

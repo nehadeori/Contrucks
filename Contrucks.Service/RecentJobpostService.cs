@@ -38,7 +38,9 @@ namespace Contrucks.Service
                 SourceAddress = usertables.SourceAddress,
                 DestinationAddress = usertables.DestinationAddress,
                 LoadWeight = usertables.LoadWeight,
-                Budget = usertables.Budget
+                Budget = usertables.Budget,
+                LoadTypeId = usertables.LoadTypeId,
+                TruckTypeId = usertables.TruckTypeId
             };
             usertableRepository.Add(njp);
             unitOfWork.Commit();

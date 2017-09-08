@@ -15,10 +15,10 @@ namespace Contrucks.model
 
 
         //foreign key for LoadType
-        public int LoadTypeId { get; set; }
+        public virtual int LoadTypeId { get; set; }
 
         //foreign key for TruckType
-        public int TruckTypeId { get; set; }
+        public virtual int TruckTypeId { get; set; }
 
 
         [Required(ErrorMessage = "This Field is Required")]

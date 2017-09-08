@@ -1,11 +1,12 @@
-﻿using Contrucks.model.ViewModels;
+﻿using Contrucks.model;
+using Contrucks.model.ViewModels;
 using System.Collections.Generic;
 
 namespace Contrucks.Service.Interfaces
 {
     public interface IRecentJobPostService
     {
-        IEnumerable<RecentpostViewmodel> GetAll();
+        IEnumerable<NewJobPosts> GetAll();
         void AddData(RecentpostViewmodel usertables);
     }
 }

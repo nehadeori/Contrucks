@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 namespace Contrucks.Repository.Repository
 {
   
-        public class RecentpostsRepository : RepositoryBase<RecentpostViewmodel>, IRecentpostsRepository
+        public class RecentpostsRepository : RepositoryBase<NewJobPosts>, IRecentpostsRepository
         {
             public RecentpostsRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
             {
             }
       
     }
-        public interface IRecentpostsRepository : IRepositoryBase<RecentpostViewmodel>
+        public interface IRecentpostsRepository : IRepositoryBase<NewJobPosts>
         {
-            IEnumerable<RecentpostViewmodel> GetAll();
-            void Add(RecentpostViewmodel usertables);
+            IEnumerable<NewJobPosts> GetAll();
+            void Add(NewJobPosts usertables);
         }
 
     }

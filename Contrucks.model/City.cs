@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Contrucks.model
 {
@@ -12,10 +12,6 @@ namespace Contrucks.model
 
         //foreign key for States
         public int StateId { get; set; }
-
-     
-        public virtual State State { get; set; }
-
         public virtual string CityName { get; set; }
         public virtual bool IsActive { get; set; }
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
@@ -26,6 +22,7 @@ namespace Contrucks.model
         public virtual string DeletedBy { get; set; }
         public virtual DateTime DeletedDate { get; set; }
 
+        public virtual State State { get; set; }
         public virtual ICollection<Truckers> Truckers { get; set; }
         public virtual ICollection<Contractors> Contractors { get; set; }
        

@@ -11,7 +11,7 @@ namespace Contrucks.model
         public int JobId { get; set; }
 
         //foreign key for Contractors
-        public int ContractorId { get; set; }
+        public int? ContractorId { get; set; }
 
 
 
@@ -61,11 +61,11 @@ namespace Contrucks.model
         public virtual bool IsActive { get; set; }
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
         public virtual string CreatedBy { get; set; }
-        public virtual DateTime ModifiedDate { get; set; }
+        public virtual DateTime? ModifiedDate { get; set; }
         public virtual string ModifiedBy { get; set; }
         public virtual string Deleted { get; set; }
         public virtual string DeletedBy { get; set; }
-        public virtual DateTime DeletedDate { get; set; }
+        public virtual DateTime? DeletedDate { get; set; }
 
         public virtual ICollection<JobApplications> JobApplications { get; set; }
 

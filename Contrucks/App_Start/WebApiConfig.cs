@@ -14,13 +14,20 @@ namespace Contrucks
     {
         public static void Register(HttpConfiguration config)
         {
+
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-            config.Formatters.JsonFormatter.SupportedMediaTypes
-           .Add(new MediaTypeHeaderValue("text/html"));
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));          //text/html
             var settings = config.Formatters.JsonFormatter.SerializerSettings;
             //settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             settings.Formatting = Formatting.Indented;
+
+            //To serialize output 
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            //
+
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 

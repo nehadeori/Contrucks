@@ -15,6 +15,7 @@ namespace Contrucks.Repository.Repository
             public RecentpostsRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
             {
             }
+      
     }
         public interface IRecentpostsRepository : IRepositoryBase<RecentpostViewmodel>
         {

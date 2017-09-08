@@ -17,13 +17,13 @@ namespace Contrucks.model
         public int TruckerId { get; set; }
 
       
-        public virtual Truckers Truckers { get; set; }
+       
 
         //foreign key for TruckType
         public int TruckTypeId { get; set; }
 
         
-        public virtual TruckTypes TruckType { get; set; }
+       
 
         [Required]
         [MaxLength(255, ErrorMessage = "Invalid Registration Number")]
@@ -50,5 +50,10 @@ namespace Contrucks.model
         public virtual string Deleted { get; set; }
         public virtual string DeletedBy { get; set; }
         public virtual DateTime DeletedDate { get; set; }
+
+
+        public virtual Truckers Truckers { get; set; }
+
+        public virtual TruckTypes TruckType { get; set; }
     }
 }

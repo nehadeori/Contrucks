@@ -13,7 +13,7 @@ namespace Contrucks.model
         public int ContractorId { get; set; }
 
     
-        public virtual Contractors Contractor { get; set; }
+      
         public virtual DateTime JobStartTime { get; set; }
         public virtual DateTime JobStopTime { get; set; }
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
@@ -27,6 +27,9 @@ namespace Contrucks.model
         [MaxLength(255)]
         public virtual string DeletedBy { get; set; }
         public virtual DateTime DeletedDate { get; set; }
+
+
+        public virtual Contractors Contractor { get; set; }
 
     }
 }

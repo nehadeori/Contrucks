@@ -15,19 +15,18 @@ namespace Contrucks.model
         public int UserTableId { get; set; }
 
       
-        public virtual UserTables UserTable { get; set; }
-
+      
         //foreign key for States
         public int StateId { get; set; }
 
       
-        public virtual State State { get; set; }
+     
 
         //foreign key for City
         public int CityId { get; set; }
 
        
-        public virtual City City { get; set; }
+      
 
         [Required(ErrorMessage = "Trucker's Name is Required")]
         [MaxLength(255, ErrorMessage = "Word limit Exceeded")]
@@ -58,5 +57,14 @@ namespace Contrucks.model
         public virtual ICollection<Messages> Messages { get; set; }
 
         public virtual ICollection<TruckerDetail> TruckerDetail { get; set; }
+
+
+
+        public virtual UserTables UserTable { get; set; }
+
+        public virtual State State { get; set; }
+
+        public virtual City City { get; set; }
+
     }
 }

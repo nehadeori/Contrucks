@@ -12,10 +12,7 @@ namespace Contrucks.model
         //foreign key for UserTables
         public int UserTableId { get; set; }
 
-      
-        public virtual UserTables UserTables { get; set; }
-
-        [Required]
+       [Required]
         public virtual int Amount { get; set; }
         [Required]
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
@@ -29,5 +26,8 @@ namespace Contrucks.model
         [MaxLength(255)]
         public virtual string DeletedBy { get; set; }
         public virtual DateTime DeletedDate { get; set; }
+
+
+        public virtual UserTables UserTables { get; set; }
     }
 }

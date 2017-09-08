@@ -15,13 +15,13 @@ namespace Contrucks.model
         public int TruckerId { get; set; }
 
         
-        public virtual Truckers Truckers { get; set; }
+    
 
         //foreign key for NewJobPosts
         public int JobId { get; set; }
 
       
-        public virtual NewJobPosts NewJobPosts { get; set; }
+     
 
         [Required]
         [MaxLength(3000)]
@@ -46,5 +46,10 @@ namespace Contrucks.model
         public virtual DateTime DeletedDate { get; set; }
 
         public virtual ICollection<Messages> Messages { get; set; }
+
+
+        public virtual Truckers Truckers { get; set; }
+
+        public virtual NewJobPosts NewJobPosts { get; set; }
     }
 }

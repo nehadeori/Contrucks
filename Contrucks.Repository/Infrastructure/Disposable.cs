@@ -12,7 +12,7 @@ namespace Contrucks.Repository.Infrastructure
         }
         public void Dispose()
         {
-            Dispose(true);
+            Dispose(false);
             GC.SuppressFinalize(this);
         }
         private void Dispose(bool disposing)

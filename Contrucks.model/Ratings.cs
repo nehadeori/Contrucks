@@ -13,12 +13,12 @@ namespace Contrucks.model
         public int ContractorId { get; set; }
 
       
-        public virtual Contractors Contractor { get; set; }
+    
 
         //foreign key for Truckers
         public  int TruckerId { get; set; }
 
-        public virtual Truckers Trucker { get; set; }
+     
 
         [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Values")]
         public virtual decimal Rating { get; set; }
@@ -30,5 +30,12 @@ namespace Contrucks.model
         public virtual string Deleted { get; set; }
         public virtual string DeletedBy { get; set; }
         public virtual DateTime DeletedDate { get; set; }
+
+
+
+        public virtual Contractors Contractor { get; set; }
+
+
+        public virtual Truckers Trucker { get; set; }
     }
 }

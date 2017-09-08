@@ -32,7 +32,7 @@ namespace Contrucks.Controllers
 
         //Post
         [Route("api/ContractorDashboard/SetData")]
-        public async Task<IHttpActionResult> SetData(RecentpostViewmodel recentVM)
+        public IHttpActionResult SetData(RecentpostViewmodel recentVM)
         {
             recentPostService.AddData(recentVM);
             return Ok();

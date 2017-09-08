@@ -14,21 +14,21 @@ namespace Contrucks.model
         public int UserTableId { get; set; }
 
     
-        public virtual UserTables UserTables { get; set; }
+       
 
         //foreign key for State
 
         public int StateId { get; set; }
 
       
-        public virtual State State { get; set; }
+       
 
         //foreign key for City
 
         public int CityId { get; set; }
 
        
-        public virtual City City { get; set; }
+       
 
         [Required(ErrorMessage = "Name is Required")]
         [MaxLength(255)]
@@ -51,11 +51,22 @@ namespace Contrucks.model
         public virtual string DeletedBy { get; set; }
         public virtual DateTime DeletedDate { get; set; }
 
+       
         public virtual ICollection<NewJobPosts> NewJobPosts { get; set; }
 
         public virtual ICollection<Transactions> Transactions { get; set; }
 
         public virtual ICollection<JobDuration> JobDuration { get; set; }
-        
+
+
+
+        public virtual UserTables UserTables { get; set; }
+
+        public virtual City City { get; set; }
+
+        public virtual State State { get; set; }
+
+
+
     }
 }

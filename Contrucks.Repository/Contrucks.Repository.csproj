@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201709070705330_Creating-NewJobPosts_Table.Designer.cs">
       <DependentUpon>201709070705330_Creating-NewJobPosts_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709080741591_Nullable-Int.cs" />
+    <Compile Include="Migrations\201709080741591_Nullable-Int.Designer.cs">
+      <DependentUpon>201709080741591_Nullable-Int.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\NewJobPostRepository.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709070705330_Creating-NewJobPosts_Table.resx">
       <DependentUpon>201709070705330_Creating-NewJobPosts_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709080741591_Nullable-Int.resx">
+      <DependentUpon>201709080741591_Nullable-Int.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

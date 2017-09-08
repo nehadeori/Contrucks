@@ -12,7 +12,7 @@ namespace Contrucks.model
         //foreign key for JobApplications
         public int JobApplicationId { get; set; }
      
-        public virtual JobApplications JobApplications { get; set; }
+        
         [Required]
         [MaxLength(255)]
         public virtual string SenderName { get; set; }
@@ -31,6 +31,9 @@ namespace Contrucks.model
         public virtual bool Deleted { get; set; }
         public virtual string DeletedBy { get; set; }
         public virtual DateTime DeletedDate { get; set; }
+
+
+        public virtual JobApplications JobApplications { get; set; }
 
     }
 }

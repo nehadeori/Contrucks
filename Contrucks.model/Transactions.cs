@@ -13,13 +13,13 @@ namespace Contrucks.model
         public int ContractorId { get; set; }
 
       
-        public virtual Contractors Contractor { get; set; }
+       
 
         //foreign key for Truckers
         public int TruckerId { get; set; }
 
 
-        public virtual Truckers Trucker { get; set; }
+    
         [MaxLength(15)]
         public virtual string TransactionStatus { get; set; }
         public virtual bool IsActive { get; set; }
@@ -30,5 +30,10 @@ namespace Contrucks.model
         public virtual string Deleted { get; set; }
         public virtual string DeletedBy { get; set; }
         public virtual DateTime DeletedDate { get; set; }
+
+
+        public virtual Contractors Contractor { get; set; }
+
+        public virtual Truckers Trucker { get; set; }
     }
 }

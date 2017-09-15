@@ -27,7 +27,9 @@ namespace Contrucks.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-
+        /// <summary>
+        /// Author: Praveen Chandra Bhatt
+        /// </summary>
         public AccountController()
         {
         }

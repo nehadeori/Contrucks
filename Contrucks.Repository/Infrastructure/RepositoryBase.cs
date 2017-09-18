@@ -1,10 +1,7 @@
 ﻿using System;
-using Contrucks.Repository.Infrastructure;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Contrucks.Repository.Infrastructure
 {
@@ -40,11 +37,25 @@ namespace Contrucks.Repository.Infrastructure
             dbset.Remove(entity);
         }
 
+        public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        {
+
+            IEnumerable<T> query = dbset.Where(predicate).AsEnumerable();
+            return query;
+        }
 
         public virtual IEnumerable<T> GetAll()
         {
             return dbset.ToList();
         }
+        public virtual IEnumerable<T> GetLoadType()
+        {
+            return dbset.ToList();
+        }
 
+        public IEnumerable<T> GetTruckType()
+        {
+            return dbset.ToList();
+        }
     }
 }

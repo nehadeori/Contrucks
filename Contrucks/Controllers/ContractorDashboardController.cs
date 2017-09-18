@@ -1,8 +1,6 @@
 ﻿using Contrucks.model.ViewModels;
-using Contrucks.Repository.Repository;
-using Contrucks.Service;
 using Contrucks.Service.Interfaces;
-using System.Threading.Tasks;
+using System;
 using System.Web.Http;
 
 namespace Contrucks.Controllers
@@ -18,26 +16,67 @@ namespace Contrucks.Controllers
         {
             recentPostService = rec;
         }
-        // GET: /Details/
 
+        // GET: /Details/
         [Route("api/ContractorDashboard/GetAllData")]
         public IHttpActionResult GetAllData()
         {
-            //var user = User.Identity.GetUserId();
-
-            var authors = recentPostService.GetAll();
-            return Ok(authors);
-
+            try
+            {
+                var authors = recentPostService.GetAll();
+                return Ok(authors);
+            }
+            catch (Exception)   
+            {
+                throw;
+            }
         }
 
-        //Post
+        //Get: Load type details
+        [Route("api/ContractorDashboard/GetLoadType")]
+        public IHttpActionResult GetLoadType()
+        {
+            try
+            {
+                var loadtype = recentPostService.GetLoadType();
+                return Ok(loadtype);
+            }
+            catch (Exception)   
+            {
+                throw;
+            }
+        }
+
+        //Get: Load type details
+        [Route("api/ContractorDashboard/GetTruckType")]
+        public IHttpActionResult GetTruckType()
+        {
+            try
+            {
+                var trucktype = recentPostService.GetTruckType();
+                return Ok(trucktype);
+            }
+            catch (Exception)   
+            {
+                throw;
+            }
+        }
+
+        //Post: New JobPost Data
         [Route("api/ContractorDashboard/SetData")]
         public IHttpActionResult SetData(RecentpostViewmodel recentVM)
         {
-            recentPostService.AddData(recentVM);
-            return Ok();
-        }
+            try
+            {
+                recentPostService.AddData(recentVM);
+                return Ok();
 
+            }
+            catch (Exception)   
+            {
+                throw;
+            }
+        }
 
     }
 

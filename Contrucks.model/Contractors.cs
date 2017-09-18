@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Contrucks.model
 {
-    public class Contractors
+    public class Contractors 
     {
         [Key]
         public int ContractorId { get; set; }
@@ -13,22 +12,13 @@ namespace Contrucks.model
         //foreign key for UserTables
         public int UserTableId { get; set; }
 
-    
-       
-
         //foreign key for State
 
         public int StateId { get; set; }
 
-      
-       
-
         //foreign key for City
 
         public int CityId { get; set; }
-
-       
-       
 
         [Required(ErrorMessage = "Name is Required")]
         [MaxLength(255)]
@@ -59,7 +49,7 @@ namespace Contrucks.model
         public virtual ICollection<JobDuration> JobDuration { get; set; }
 
 
-
+//        [NotMapped]
         public virtual UserTables UserTables { get; set; }
 
         public virtual City City { get; set; }

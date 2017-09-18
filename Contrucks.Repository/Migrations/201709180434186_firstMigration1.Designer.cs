@@ -7,13 +7,13 @@ namespace Contrucks.Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Initiallevel : IMigrationMetadata
+    public sealed partial class firstMigration1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initiallevel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(firstMigration1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709080859113_Initiallevel"; }
+            get { return "201709180434186_firstMigration1"; }
         }
         
         string IMigrationMetadata.Source

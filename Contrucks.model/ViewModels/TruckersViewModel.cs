@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Contrucks.model.ViewModels
+﻿namespace Contrucks.model.ViewModels
 {
-   public class TruckersViewModel
+    public class TruckersViewModel
     {
         //TRUCKERS
         public int UserId { get; set; }

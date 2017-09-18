@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Contrucks.model.ViewModels
+﻿namespace Contrucks.model.ViewModels
 {
-   public class ContractorsViewModel
+    public class ContractorsViewModel
     {
         public int UserId { get; set; }
         public string ContractorFirstName { get; set; }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Contrucks.model.ViewModels
 {
@@ -13,7 +9,7 @@ namespace Contrucks.model.ViewModels
         public DateTime? JobStartDate { get; set; }
         public DateTime? JobEndDate { get; set; }
         public string JobDescription { get; set; }
-
+        public int? ContractorId { get; set; }  
         public int EstimatedTime { get; set; }
 
         public string SourceAddress { get; set; }

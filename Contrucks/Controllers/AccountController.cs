@@ -18,20 +18,26 @@ using Contrucks.Providers;
 using Contrucks.Results;
 using Contrucks.model;
 using Contrucks.model.ViewModels;
+using System.Web.Http.Cors;
+using Contrucks.Service;
 
 namespace Contrucks.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
+    [EnableCors("*", "*", "*")]
     public class AccountController : ApiController
     {
+        private readonly IUserTablesService usertableservices;
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+
         /// <summary>
         /// Author: Praveen Chandra Bhatt
         /// </summary>
-        public AccountController()
+        public AccountController(IUserTablesService usertableservice)
         {
+            usertableservices = usertableservice;
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -322,10 +328,10 @@ namespace Contrucks.Controllers
             return logins;
         }
 
-        // POST api/Account/Register
+        // POST api/Account/ConRegister
         [AllowAnonymous]
-        [Route("Register")]
-        public async Task<IHttpActionResult> Register(UserTablesViewModel model)
+        [Route("ConRegister")]
+        public async Task<IHttpActionResult> Register(ContractorRegistrationViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -334,7 +340,32 @@ namespace Contrucks.Controllers
 
             var user = new ApplicationUser() { Email = model.UserEmail, UserName = model.UserEmail };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword); 
+            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
+
+            usertableservices.AddUser(model);
+
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
+
+        // POST api/Account/TruckRegister
+        [AllowAnonymous]
+        [Route("TruckRegister")]
+        public async Task<IHttpActionResult> Register(TruckerRegistrationViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = new ApplicationUser() { Email = model.UserEmail, UserName = model.UserEmail };
+
+            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
 
             if (!result.Succeeded)
             {

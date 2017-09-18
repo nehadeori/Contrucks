@@ -2,9 +2,11 @@
 using Contrucks.Service.Interfaces;
 using System;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Contrucks.Controllers
 {
+    [EnableCors(origins:"*",headers: "*",methods: "*")]
     public class ContractorDashboardController : ApiController
     {
         IRecentJobPostService recentPostService;

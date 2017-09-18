@@ -58,9 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IRecentJobPostService.cs" />
+    <Compile Include="Interfaces\IRegistrationService.cs" />
     <Compile Include="RecentJobpostService.cs" />
-    <Compile Include="UserTablesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

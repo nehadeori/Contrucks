@@ -7,13 +7,13 @@ namespace Contrucks.Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class NullableInt : IMigrationMetadata
+    public sealed partial class Initiallevel11 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NullableInt));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initiallevel11));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709080741591_Nullable-Int"; }
+            get { return "201709151307163_Initiallevel11"; }
         }
         
         string IMigrationMetadata.Source

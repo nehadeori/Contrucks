@@ -1,14 +1,14 @@
 ﻿using Contrucks.model.ViewModels;
-using Contrucks.Repository.Repository;
-using Contrucks.Service;
 using Contrucks.Service.Interfaces;
-using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Contrucks.Controllers
 {
+    [EnableCors("*","*", "*")]
     public class ContractorDashboardController : ApiController
     {
+        
         IRecentJobPostService recentPostService;
         public ContractorDashboardController()
         {
@@ -31,7 +31,7 @@ namespace Contrucks.Controllers
         }
 
         //Post
-        [Route("api/ContractorDashboard/SetData")]
+        [Route("api/ContractorDashboard/SetData")] 
         public IHttpActionResult SetData(RecentpostViewmodel recentVM)
         {
             recentPostService.AddData(recentVM);
@@ -39,6 +39,13 @@ namespace Contrucks.Controllers
         }
 
 
+        //Get recently added job posts
+        [Route("api/ContractorDashboard/RecentJobPosts")]
+        public IHttpActionResult GetRecentJobPosts(int Id)
+        {
+            var result= recentPostService.GetAllById(Id);
+           return Ok(result);
+        }
     }
 
 

@@ -58,7 +58,7 @@ namespace Contrucks.model
         public virtual int Budget { get; set; }
         [DataType(DataType.DateTime)]
         public virtual DateTime? PostedDate { get; set; } = DateTime.Now;
-        public virtual bool IsActive { get; set; }
+        public virtual bool IsActive  { get; set; }
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
         public virtual string CreatedBy { get; set; }
         public virtual DateTime? ModifiedDate { get; set; }

@@ -39,12 +39,20 @@ namespace Contrucks.Repository.Infrastructure
         {
             dbset.Remove(entity);
         }
+        public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        {
 
+            IEnumerable<T> query = dbset.Where(predicate).AsEnumerable();
+            return query;
+        }
 
         public virtual IEnumerable<T> GetAll()
         {
             return dbset.ToList();
         }
-
+        public virtual T GetByID(object id)
+        {
+            return dbset.Find(id);
+        }
     }
 }

@@ -18,11 +18,17 @@ using Contrucks.Providers;
 using Contrucks.Results;
 using Contrucks.model;
 using Contrucks.model.ViewModels;
+using System.Web.Http.Cors;
+using Contrucks.Repository;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Linq;
 
 namespace Contrucks.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
+    [EnableCors("*", "*", "*")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
@@ -127,7 +133,7 @@ namespace Contrucks.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -260,9 +266,9 @@ namespace Contrucks.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -321,6 +327,7 @@ namespace Contrucks.Controllers
         }
 
         // POST api/Account/Register
+    
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(UserTablesViewModel model)
@@ -332,7 +339,7 @@ namespace Contrucks.Controllers
 
             var user = new ApplicationUser() { Email = model.UserEmail, UserName = model.UserEmail };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword); 
+            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
 
             if (!result.Succeeded)
             {
@@ -341,6 +348,8 @@ namespace Contrucks.Controllers
 
             return Ok();
         }
+
+
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
@@ -370,7 +379,7 @@ namespace Contrucks.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }
@@ -492,5 +501,47 @@ namespace Contrucks.Controllers
         }
 
         #endregion
+
+        // POST api/Account/Login
+        [AllowAnonymous]
+        [Route("Login")]
+        public IHttpActionResult Login(UserTables model)
+        {
+            ConTruckContext db = new ConTruckContext();
+            var user = db.UserTables.FirstOrDefault(x => x.UserEmail == model.UserEmail);
+            if (user == null)
+                return Unauthorized();
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            //   var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.UserTableId.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                //SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            // return basic user info (without password) and token to store client side
+            return Ok(new
+            {
+                Id = user.Id,
+                Username = user.UserName,
+              
+                Token = tokenString
+            });
+        }
     }
-}
+
+        public class AppSettings
+        {
+            public string Secret { get; set; }
+        }
+    }
+
+
+    

@@ -79,6 +79,7 @@
     <Compile Include="ViewModels\fulfilledpostViewmodel.cs" />
     <Compile Include="ViewModels\LoaddistancegraphViewmodel.cs" />
     <Compile Include="ViewModels\LoadunitsgraphViewmodel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\NewJobPostViewModel.cs" />
     <Compile Include="ViewModels\RecentpostViewmodel.cs" />
     <Compile Include="ViewModels\TopTruckersViewmodel.cs" />

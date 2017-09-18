@@ -3,7 +3,7 @@ namespace Contrucks.Repository.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreatingNewJobPosts_Table : DbMigration
+    public partial class Initiallevel1 : DbMigration
     {
         public override void Up()
         {
@@ -17,16 +17,86 @@ namespace Contrucks.Repository.Migrations
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(maxLength: 255),
                         ModifiedBy = c.String(maxLength: 255),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         IsActive = c.Boolean(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         DeletedBy = c.String(maxLength: 255),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                         UserTables_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.BalanceId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserTables_Id)
                 .Index(t => t.UserTables_Id);
+            
+            CreateTable(
+                "dbo.AspNetUsers",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Email = c.String(maxLength: 256),
+                        EmailConfirmed = c.Boolean(nullable: false),
+                        PasswordHash = c.String(),
+                        SecurityStamp = c.String(),
+                        PhoneNumber = c.String(),
+                        PhoneNumberConfirmed = c.Boolean(nullable: false),
+                        TwoFactorEnabled = c.Boolean(nullable: false),
+                        LockoutEndDateUtc = c.DateTime(),
+                        LockoutEnabled = c.Boolean(nullable: false),
+                        AccessFailedCount = c.Int(nullable: false),
+                        UserName = c.String(nullable: false, maxLength: 256),
+                        UserTableId = c.Int(),
+                        UserEmail = c.String(),
+                        UserPassword = c.String(),
+                        IsActive = c.Boolean(),
+                        CreatedDate = c.DateTime(),
+                        CreatedBy = c.String(),
+                        ModifiedDate = c.DateTime(),
+                        ModifiedBy = c.String(),
+                        Deleted = c.String(),
+                        DeletedBy = c.String(),
+                        DeletedDate = c.DateTime(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
+            
+            CreateTable(
+                "dbo.AspNetUserClaims",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        ClaimType = c.String(),
+                        ClaimValue = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.AspNetUserLogins",
+                c => new
+                    {
+                        LoginProvider = c.String(nullable: false, maxLength: 128),
+                        ProviderKey = c.String(nullable: false, maxLength: 128),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
             
             CreateTable(
                 "dbo.Cities",
@@ -38,11 +108,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.CityId)
                 .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
@@ -62,11 +132,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                         UserTables_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ContractorId)
@@ -88,11 +158,11 @@ namespace Contrucks.Repository.Migrations
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(maxLength: 255),
                         ModifiedBy = c.String(maxLength: 255),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         IsActive = c.Boolean(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         DeletedBy = c.String(maxLength: 255),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.JobDurationId)
                 .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
@@ -103,9 +173,9 @@ namespace Contrucks.Repository.Migrations
                 c => new
                     {
                         JobId = c.Int(nullable: false, identity: true),
-                        ContractorId = c.Int(nullable: false),
-                        LoadTypeId = c.Int(nullable: false),
-                        TruckTypeId = c.Int(nullable: false),
+                        ContractorId = c.Int(),
+                        LoadTypeId = c.Int(),
+                        TruckTypeId = c.Int(),
                         distance = c.Int(nullable: false),
                         JobTitle = c.String(nullable: false, maxLength: 255),
                         JobDescription = c.String(nullable: false, maxLength: 3000),
@@ -120,16 +190,16 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.JobId)
-                .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
-                .ForeignKey("dbo.LoadTypes", t => t.LoadTypeId, cascadeDelete: true)
-                .ForeignKey("dbo.TruckTypes", t => t.TruckTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId)
+                .ForeignKey("dbo.LoadTypes", t => t.LoadTypeId)
+                .ForeignKey("dbo.TruckTypes", t => t.TruckTypeId)
                 .Index(t => t.ContractorId)
                 .Index(t => t.LoadTypeId)
                 .Index(t => t.TruckTypeId);
@@ -149,11 +219,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.JobApplicationId)
                 .ForeignKey("dbo.NewJobPosts", t => t.JobId, cascadeDelete: true)
@@ -174,11 +244,11 @@ namespace Contrucks.Repository.Migrations
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(maxLength: 255),
                         ModifiedBy = c.String(maxLength: 255),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         IsActive = c.Boolean(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                         Truckers_TruckerId = c.Int(),
                     })
                 .PrimaryKey(t => t.MessageId)
@@ -202,11 +272,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                         UserTable_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.TruckerId)
@@ -226,11 +296,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.StateId);
             
@@ -249,11 +319,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.TruckId)
                 .ForeignKey("dbo.Truckers", t => t.TruckerId, cascadeDelete: true)
@@ -270,11 +340,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.TruckTypeId);
             
@@ -286,11 +356,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.LoadTypeId);
             
@@ -305,11 +375,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.TransactionId)
                 .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
@@ -328,11 +398,11 @@ namespace Contrucks.Repository.Migrations
                         IsActive = c.Boolean(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
-                        ModifiedDate = c.DateTime(nullable: false),
+                        ModifiedDate = c.DateTime(),
                         ModifiedBy = c.String(),
                         Deleted = c.String(),
                         DeletedBy = c.String(),
-                        DeletedDate = c.DateTime(nullable: false),
+                        DeletedDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.RatingId)
                 .ForeignKey("dbo.Contractors", t => t.ContractorId, cascadeDelete: true)
@@ -340,13 +410,24 @@ namespace Contrucks.Repository.Migrations
                 .Index(t => t.ContractorId)
                 .Index(t => t.TruckerId);
             
-            AddColumn("dbo.AspNetUsers", "UserTableId", c => c.Int());
-            DropColumn("dbo.AspNetUsers", "PK_UserTableId");
+            CreateTable(
+                "dbo.AspNetRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
         }
         
         public override void Down()
         {
-            AddColumn("dbo.AspNetUsers", "PK_UserTableId", c => c.Int());
+            DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Ratings", "TruckerId", "dbo.Truckers");
             DropForeignKey("dbo.Ratings", "ContractorId", "dbo.Contractors");
             DropForeignKey("dbo.Truckers", "CityId", "dbo.Cities");
@@ -369,6 +450,7 @@ namespace Contrucks.Repository.Migrations
             DropForeignKey("dbo.NewJobPosts", "ContractorId", "dbo.Contractors");
             DropForeignKey("dbo.JobDurations", "ContractorId", "dbo.Contractors");
             DropForeignKey("dbo.Balances", "UserTables_Id", "dbo.AspNetUsers");
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Ratings", new[] { "TruckerId" });
             DropIndex("dbo.Ratings", new[] { "ContractorId" });
             DropIndex("dbo.Transactions", new[] { "TruckerId" });
@@ -390,8 +472,13 @@ namespace Contrucks.Repository.Migrations
             DropIndex("dbo.Contractors", new[] { "CityId" });
             DropIndex("dbo.Contractors", new[] { "StateId" });
             DropIndex("dbo.Cities", new[] { "StateId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
+            DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
+            DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Balances", new[] { "UserTables_Id" });
-            DropColumn("dbo.AspNetUsers", "UserTableId");
+            DropTable("dbo.AspNetRoles");
             DropTable("dbo.Ratings");
             DropTable("dbo.Transactions");
             DropTable("dbo.LoadTypes");
@@ -405,6 +492,10 @@ namespace Contrucks.Repository.Migrations
             DropTable("dbo.JobDurations");
             DropTable("dbo.Contractors");
             DropTable("dbo.Cities");
+            DropTable("dbo.AspNetUserRoles");
+            DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.AspNetUserClaims");
+            DropTable("dbo.AspNetUsers");
             DropTable("dbo.Balances");
         }
     }

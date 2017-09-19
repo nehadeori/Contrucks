@@ -340,16 +340,27 @@ namespace Contrucks.Controllers
 
             var user = new ApplicationUser() { Email = model.UserEmail, UserName = model.UserEmail };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
-
-            usertableservices.AddUser(model);
-
-
-            if (!result.Succeeded)
+            //Create the user 
+            try
             {
-                return GetErrorResult(result);
+                IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
+                if (result.Succeeded)
+                {
+                    var currentUser = UserManager.FindByName(user.UserName);
+                    var roleresult = UserManager.AddToRole(currentUser.Id,"Contractor");
+                  
+                }
+               
+               // usertableservices.AddUser(model);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
             }
-
+            catch (Exception)   
+            {
+                throw;
+            }
             return Ok();
         }
 
@@ -365,13 +376,26 @@ namespace Contrucks.Controllers
 
             var user = new ApplicationUser() { Email = model.UserEmail, UserName = model.UserEmail };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
-
-            if (!result.Succeeded)
+            try
             {
-                return GetErrorResult(result);
+                IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
+                if (result.Succeeded)
+                {
+                    var currentUser = UserManager.FindByName(user.UserName);
+                    var roleresult = UserManager.AddToRole(currentUser.Id,"Trucker");
+                }
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+            }
+            catch (Exception)   
+            {
+                throw;
             }
 
+            
             return Ok();
         }
 

@@ -45,7 +45,7 @@ namespace Contrucks.Service
         {
             try
             {
-
+               // AspNetUserRoles asp = new AspNetUserRoles { };    
                 UserTables njp = new UserTables
                 {
                     IsActive = true,

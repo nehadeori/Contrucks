@@ -6,6 +6,7 @@ namespace Contrucks.model.ViewModels
     {
         //NEW JOB POSTS
         public string JobTitle { get; set; }
+    
         public DateTime? JobStartDate { get; set; }
         public DateTime? JobEndDate { get; set; }
         public string JobDescription { get; set; }
@@ -19,8 +20,8 @@ namespace Contrucks.model.ViewModels
 
         public int Budget { get; set; }
 
-        public  int PK_LoadTypeId { get; set; }
-        public int PK_TruckTypeId { get; set; }
+        public int LoadTypeId { get; set; }    
+        public int TruckTypeId { get; set; }
         //public int NoOfTrucksRequired { get; set; }
     }
 }

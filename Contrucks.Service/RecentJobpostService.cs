@@ -1,9 +1,11 @@
 ﻿using Contrucks.model;
 using Contrucks.model.ViewModels;
+using Contrucks.Repository;
 using Contrucks.Repository.Infrastructure;
 using Contrucks.Repository.Repository;
 using Contrucks.Service.Interfaces;
 using System.Collections.Generic;
+using System.Net.Mail;
 using System;
 
 namespace Contrucks.Service
@@ -27,7 +29,7 @@ namespace Contrucks.Service
             this.usertableRepository = usertableRepository;
             this.unitOfWork = unitOfWork;
         }
-      
+
         /// <summary>
         /// Getting all the data regarding Job Posts Details 
         /// </summary>
@@ -36,8 +38,8 @@ namespace Contrucks.Service
         {
             try
             {
-                return usertableRepository.GetAll();
-            }
+            return usertableRepository.GetAll();
+        }
             catch (Exception)   
             {
                 throw;
@@ -52,23 +54,29 @@ namespace Contrucks.Service
         {
             try
             {
-                NewJobPosts njp = new NewJobPosts
-                {
+            NewJobPosts njp = new NewJobPosts
+          
+            {
                     ContractorId = usertables.ContractorId,
-                    distance = usertables.distance,
-                    JobTitle = usertables.JobTitle,
-                    JobDescription = usertables.JobDescription,
-                    JobStartDate = usertables.JobStartDate,
-                    JobEndDate = usertables.JobEndDate,
-                    EstimatedTime = usertables.EstimatedTime,
-                    SourceAddress = usertables.SourceAddress,
-                    DestinationAddress = usertables.DestinationAddress,
-                    LoadWeight = usertables.LoadWeight,
-                    Budget = usertables.Budget
-                };
-                usertableRepository.Add(njp);
-                unitOfWork.Commit();
-            }
+                distance = usertables.distance,
+                JobTitle = usertables.JobTitle,
+                JobDescription = usertables.JobDescription,
+                JobStartDate = usertables.JobStartDate,
+                JobEndDate = usertables.JobEndDate,
+                EstimatedTime = usertables.EstimatedTime,
+                SourceAddress = usertables.SourceAddress,
+                DestinationAddress = usertables.DestinationAddress,
+                LoadWeight = usertables.LoadWeight,
+                Budget = usertables.Budget,
+                LoadTypeId=usertables.LoadTypeId,
+               TruckTypeId=usertables.TruckTypeId
+
+
+
+            };
+            usertableRepository.Add(njp);
+            unitOfWork.Commit();
+        }
             catch (Exception)   
             {
                 throw;
@@ -127,6 +135,10 @@ namespace Contrucks.Service
                 throw;
             }
         }
-        
+       
+        public IEnumerable<NewJobPosts> GetFulfilledPostsData()
+        {
+            return usertableRepository.GetFulfilledPostsData();
+        }
     }
 }

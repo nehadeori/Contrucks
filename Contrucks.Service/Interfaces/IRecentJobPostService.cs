@@ -11,5 +11,8 @@ namespace Contrucks.Service.Interfaces
         NewJobPosts GetAllById(int Id);
         IEnumerable<LoadTypes> GetLoadType();
         IEnumerable<TruckTypes> GetTruckType();
+        NewJobPosts GetAllById(int Id);
+
+        IEnumerable<NewJobPosts> GetFulfilledPostsData();
     }
 }

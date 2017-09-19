@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Contrucks.model
 {
-    public class UserTables :IdentityUser
+    public class UserTables:IdentityUser
     {
         [Key]
         public int UserTableId { get; set; }

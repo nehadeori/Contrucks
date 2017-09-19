@@ -36,10 +36,8 @@ namespace Contrucks.Repository.Infrastructure
         {
             dbset.Remove(entity);
         }
-
         public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
-
             IEnumerable<T> query = dbset.Where(predicate).AsEnumerable();
             return query;
         }
@@ -48,14 +46,14 @@ namespace Contrucks.Repository.Infrastructure
         {
             return dbset.ToList();
         }
-        public virtual IEnumerable<T> GetLoadType()
+        public virtual T GetByID(object id)
+        {
+            return dbset.Find(id);
+        }
+        public virtual IEnumerable<T> GetFulfilledPostsData()
         {
             return dbset.ToList();
         }
 
-        public IEnumerable<T> GetTruckType()
-        {
-            return dbset.ToList();
-        }
     }
 }

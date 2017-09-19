@@ -5,13 +5,13 @@
         public int UserId { get; set; }
         public string ContractorFirstName { get; set; }
 
-        public string ContractorLastName { get; set; }
+      
         public int ContractorAge { get; set; }
-        public int ContractorPhone { get; set; }
+        public string ContractorPhone { get; set; }
         public string UserEmail { get; set; }
         public string UserPassword { get; set; }
-        public string State { get; set; }
-        public string City { get; set; }
+        public int StateId { get; set; }
+        public int CityId { get; set; }
 
 
 

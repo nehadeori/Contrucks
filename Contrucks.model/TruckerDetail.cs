@@ -32,7 +32,7 @@ namespace Contrucks.model
         [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Values")]
         public virtual decimal MaximumWeightBearable { get; set; }
 
-        [Required, Range(4, 20)]
+        [Required, Range(4, 100)]
         public virtual int NumberOfWheels { get; set; }
 
         public virtual DateTime TruckBoughtIn { get; set; }

@@ -70,10 +70,7 @@ namespace Contrucks.Service
                 Budget = usertables.Budget,
                 LoadTypeId=usertables.LoadTypeId,
                TruckTypeId=usertables.TruckTypeId
-
-
-
-            };
+             };
             usertableRepository.Add(njp);
             unitOfWork.Commit();
         }

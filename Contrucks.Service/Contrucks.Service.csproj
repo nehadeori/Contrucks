@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IRecentJobPostService.cs" />
+    <Compile Include="Interfaces\IUserTablesService.cs" />
     <Compile Include="RecentJobpostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

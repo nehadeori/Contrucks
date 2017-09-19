@@ -9,6 +9,9 @@ namespace Contrucks.Service.Interfaces
         IEnumerable<NewJobPosts> GetAll();
         void AddData(RecentpostViewmodel usertables);
         NewJobPosts GetAllById(int Id);
+        IEnumerable<LoadTypes> GetLoadType();
+        IEnumerable<TruckTypes> GetTruckType();
+        NewJobPosts GetAllById(int Id);
 
         IEnumerable<NewJobPosts> GetFulfilledPostsData();
     }

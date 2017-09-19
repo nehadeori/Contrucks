@@ -7,13 +7,13 @@ namespace Contrucks.Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class check : IMigrationMetadata
+    public sealed partial class CreatingNewJobPosts_Table : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(check));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreatingNewJobPosts_Table));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709180638263_check"; }
+            get { return "201709070705330_Creating-NewJobPosts_Table"; }
         }
         
         string IMigrationMetadata.Source

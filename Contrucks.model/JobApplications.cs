@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Contrucks.model
 {
@@ -30,9 +29,7 @@ namespace Contrucks.model
         [Range(100, 9999999)]
         public virtual long AskingPrice { get; set; }
         [Required(ErrorMessage = "This Field is required")]
-
         public virtual DateTime TimeRequired { get; set; }
-
         public virtual string JobApplicationStatus { get; set; }
         public virtual bool IsJobAwarded { get; set; }
 

@@ -19,10 +19,7 @@ using Contrucks.Results;
 using Contrucks.model;
 using Contrucks.model.ViewModels;
 using System.Web.Http.Cors;
-using Contrucks.Repository;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Linq;
+using Contrucks.Service;
 
 namespace Contrucks.Controllers
 {
@@ -31,11 +28,16 @@ namespace Contrucks.Controllers
     [EnableCors("*", "*", "*")]
     public class AccountController : ApiController
     {
+        private readonly IUserTablesService usertableservices;
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        /// <summary>
+        /// Author: Praveen Chandra Bhatt
+        /// </summary>
+        public AccountController(IUserTablesService usertableservice)
         {
+            usertableservices = usertableservice;
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -133,7 +135,7 @@ namespace Contrucks.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-
+            
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -266,9 +268,9 @@ namespace Contrucks.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-
-                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                   OAuthDefaults.AuthenticationType);
+                
+                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                    OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -326,11 +328,35 @@ namespace Contrucks.Controllers
             return logins;
         }
 
-        // POST api/Account/Register
-    
+        // POST api/Account/ConRegister
         [AllowAnonymous]
-        [Route("Register")]
-        public async Task<IHttpActionResult> Register(UserTablesViewModel model)
+        [Route("ConRegister")]
+        public async Task<IHttpActionResult> Register(ContractorRegistrationViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = new ApplicationUser() { Email = model.UserEmail, UserName = model.UserEmail };
+
+            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
+
+            usertableservices.AddUser(model);
+
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
+
+        // POST api/Account/TruckRegister
+        [AllowAnonymous]
+        [Route("TruckRegister")]
+        public async Task<IHttpActionResult> Register(TruckerRegistrationViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -348,8 +374,6 @@ namespace Contrucks.Controllers
 
             return Ok();
         }
-
-
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
@@ -379,7 +403,7 @@ namespace Contrucks.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                return GetErrorResult(result); 
             }
             return Ok();
         }
@@ -421,7 +445,7 @@ namespace Contrucks.Controllers
 
                 if (ModelState.IsValid)
                 {
-         // No ModelState errors are available to send, so just return an empty BadRequest.
+                    // No ModelState errors are available to send, so just return an empty BadRequest.
                     return BadRequest();
                 }
 
@@ -501,47 +525,5 @@ namespace Contrucks.Controllers
         }
 
         #endregion
-
-        // POST api/Account/Login
-        [AllowAnonymous]
-        [Route("Login")]
-        public IHttpActionResult Login(UserTables model)
-        {
-            ConTruckContext db = new ConTruckContext();
-            var user = db.UserTables.FirstOrDefault(x => x.UserEmail == model.UserEmail);
-            if (user == null)
-                return Unauthorized();
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            //   var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.UserTableId.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                //SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenString = tokenHandler.WriteToken(token);
-
-            // return basic user info (without password) and token to store client side
-            return Ok(new
-            {
-                Id = user.Id,
-                Username = user.UserName,
-              
-                Token = tokenString
-            });
-        }
     }
-
-        public class AppSettings
-        {
-            public string Secret { get; set; }
-        }
-    }
-
-
-    
+}

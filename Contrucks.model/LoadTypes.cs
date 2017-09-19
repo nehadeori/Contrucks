@@ -8,7 +8,7 @@ namespace Contrucks.model
     {
         [Key]
         public int LoadTypeId { get; set; }
-        public string LoadName { get; set; }    
+        public string LoadName { get; set; }
         public virtual bool IsActive { get; set; }
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
         public virtual string CreatedBy { get; set; }

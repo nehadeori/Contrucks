@@ -75,6 +75,7 @@
     <Compile Include="TruckTypes.cs" />
     <Compile Include="UserTables.cs" />
     <Compile Include="ViewModels\ContactorDashboardViewModel.cs" />
+    <Compile Include="ViewModels\ContractorRegistrationViewModel.cs" />
     <Compile Include="ViewModels\ContractorsViewModel.cs" />
     <Compile Include="ViewModels\fulfilledpostViewmodel.cs" />
     <Compile Include="ViewModels\LoaddistancegraphViewmodel.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="ViewModels\RecentpostViewmodel.cs" />
     <Compile Include="ViewModels\TopTruckersViewmodel.cs" />
     <Compile Include="ViewModels\TransportexpenditureViewModel.cs" />
+    <Compile Include="ViewModels\TruckerRegistrationViewModel.cs" />
     <Compile Include="ViewModels\TruckersViewModel.cs" />
     <Compile Include="ViewModels\UserTablesViewModel.cs" />
   </ItemGroup>

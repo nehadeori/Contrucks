@@ -1,10 +1,7 @@
 ﻿using System;
-using Contrucks.Repository.Infrastructure;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Contrucks.Repository.Infrastructure
 {
@@ -42,6 +39,12 @@ namespace Contrucks.Repository.Infrastructure
         public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
 
+        public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        {
+
+            IEnumerable<T> query = dbset.Where(predicate).AsEnumerable();
+            return query;
+        }
             IEnumerable<T> query = dbset.Where(predicate).AsEnumerable();
             return query;
         }
@@ -58,5 +61,6 @@ namespace Contrucks.Repository.Infrastructure
         {
             return dbset.ToList();
         }
+
     }
 }

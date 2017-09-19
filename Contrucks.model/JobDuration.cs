@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Contrucks.model
 {
@@ -10,10 +9,7 @@ namespace Contrucks.model
         public int JobDurationId { get; set; }
         
         //foreign key for Contractors
-        public int ContractorId { get; set; }
-
-    
-      
+        public int ContractorId { get; set; }   
         public virtual DateTime JobStartTime { get; set; }
         public virtual DateTime JobStopTime { get; set; }
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;

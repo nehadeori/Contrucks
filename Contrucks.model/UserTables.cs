@@ -24,10 +24,7 @@ namespace Contrucks.model
         public virtual string Deleted { get; set; }
         public virtual string DeletedBy { get; set; }
         public virtual DateTime? DeletedDate { get; set; }
-
-      
-
-      
+    
         public virtual ICollection<Balance> Balance { get; set; }
     }
    

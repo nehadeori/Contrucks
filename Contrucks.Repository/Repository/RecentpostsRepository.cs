@@ -22,7 +22,7 @@ namespace Contrucks.Repository.Repository
                 return FindBy(x => x.ContractorId == Id).FirstOrDefault();
         }
 
-       
+        
     }
         public interface IRecentpostsRepository : IRepositoryBase<NewJobPosts>
         {

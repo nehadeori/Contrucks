@@ -38,13 +38,6 @@ namespace Contrucks.Repository.Infrastructure
         }
         public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
-
-        public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
-        {
-
-            IEnumerable<T> query = dbset.Where(predicate).AsEnumerable();
-            return query;
-        }
             IEnumerable<T> query = dbset.Where(predicate).AsEnumerable();
             return query;
         }

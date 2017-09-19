@@ -421,7 +421,7 @@ namespace Contrucks.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    // No ModelState errors are available to send, so just return an empty BadRequest.
+         // No ModelState errors are available to send, so just return an empty BadRequest.
                     return BadRequest();
                 }
 

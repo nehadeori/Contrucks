@@ -10,6 +10,7 @@ namespace Contrucks.model.ViewModels
     {
         //NEW JOB POSTS
         public string JobTitle { get; set; }
+    
         public DateTime? JobStartDate { get; set; }
         public DateTime? JobEndDate { get; set; }
         public string JobDescription { get; set; }

@@ -38,7 +38,7 @@ namespace Contrucks
             // Register your repositories all at once using assembly scanning
             builder.RegisterAssemblyTypes(typeof(RegistrationRepository).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
 
-            builder.RegisterAssemblyTypes(typeof(RegistrationService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
+            //builder.RegisterAssemblyTypes(typeof(RegistrationService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
 
             builder.RegisterType<RecentJobPostService>().As<IRecentJobPostService>().InstancePerRequest();
             builder.RegisterType<RecentpostsRepository>().As<IRecentpostsRepository>().InstancePerRequest();

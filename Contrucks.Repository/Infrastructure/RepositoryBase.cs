@@ -54,5 +54,9 @@ namespace Contrucks.Repository.Infrastructure
         {
             return dbset.Find(id);
         }
+        public virtual IEnumerable<T> GetFulfilledPostsData()
+        {
+            return dbset.ToList();
+        }
     }
 }

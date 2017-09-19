@@ -23,7 +23,7 @@ namespace Contrucks.Controllers
         [Route("api/ContractorDashboard/GetAllData")]
         public IHttpActionResult GetAllData()
         {
-            //var user = User.Identity.GetUserId();
+          
 
             var authors = recentPostService.GetAll();
             return Ok(authors);
@@ -45,6 +45,13 @@ namespace Contrucks.Controllers
         {
             var result= recentPostService.GetAllById(Id);
            return Ok(result);
+        }
+
+        [Route("api/ContractorDashboard/GetAllFulfilledPostsData")]
+        public IHttpActionResult GetFulfilledPostsData()
+        {
+            var data = recentPostService.GetFulfilledPostsData();
+            return Ok(data);
         }
     }
 

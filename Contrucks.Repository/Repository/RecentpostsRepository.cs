@@ -21,12 +21,16 @@ namespace Contrucks.Repository.Repository
                 //return Find(Id);     
                 return FindBy(x => x.ContractorId == Id).FirstOrDefault();
         }
+
+       
     }
         public interface IRecentpostsRepository : IRepositoryBase<NewJobPosts>
         {
             IEnumerable<NewJobPosts> GetAll();
             void Add(NewJobPosts usertables);
             NewJobPosts GetAllById(int Id);
+
+        IEnumerable<NewJobPosts> GetFulfilledPostsData();
         }
 
     }

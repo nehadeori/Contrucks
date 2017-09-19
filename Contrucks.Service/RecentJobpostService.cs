@@ -4,6 +4,7 @@ using Contrucks.Repository.Infrastructure;
 using Contrucks.Repository.Repository;
 using Contrucks.Service.Interfaces;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace Contrucks.Service
 {
@@ -48,12 +49,20 @@ namespace Contrucks.Service
             };
             usertableRepository.Add(njp);
             unitOfWork.Commit();
-        }
+           
+      
+
+    }
         
         public NewJobPosts GetAllById(int Id)
         {
             return usertableRepository.GetAllById(Id);
              
+        }
+
+        public IEnumerable<NewJobPosts> GetFulfilledPostsData()
+        {
+            return usertableRepository.GetFulfilledPostsData();
         }
     }
 }
